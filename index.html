@@ -1,0 +1,1115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJ5TBNV1T2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WJ5TBNV1T2');
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" content="#120e0c" />
+  <link rel="icon" href="data:," />
+  <title>Sillage Standard — Fragrance with presence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f3eee6;
+      --paper-2: #e7ded3;
+      --ink: #211814;
+      --muted: #675c54;
+      --line: #bfb1a4;
+      --accent: #a52b1f;
+      --accent-ink: #fff8ee;
+      --panel: rgba(255,255,255,.42);
+      --photo: #ded3c7;
+      --star: #9f4d1d;
+      --shadow: 0 24px 65px rgba(43,25,16,.13);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #120e0c;
+        --paper-2: #1e1713;
+        --ink: #f3eadf;
+        --muted: #bcada2;
+        --line: #4b3e37;
+        --accent: #d44937;
+        --accent-ink: #fff8ee;
+        --panel: rgba(255,255,255,.045);
+        --photo: #2a211c;
+        --star: #e29a68;
+        --shadow: 0 26px 72px rgba(0,0,0,.35);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Manrope", sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    button { font: inherit; }
+    .wrap { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+    .toprail {
+      position: absolute;
+      z-index: 5;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 26px max(24px, calc((100vw - 1180px)/2));
+      color: #f9f0e7;
+      font-size: 13px;
+      letter-spacing: .08em;
+    }
+    .toprail nav { display: flex; gap: 30px; }
+    .toprail a { text-decoration: none; opacity: .85; }
+    .toprail a:hover, .toprail a:focus-visible { opacity: 1; text-decoration: underline; text-underline-offset: 5px; }
+    .edition { font-weight: 700; }
+    .hero {
+      min-height: 740px;
+      position: relative;
+      display: grid;
+      align-items: end;
+      background: #0b0908 url("assets/media-generation-sillage-still-life-0-72e07a22-2803-4f2b-b80a-d46f5e30d46e.webp") center / cover no-repeat;
+      color: #fff7ee;
+      isolation: isolate;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(6,5,4,.88) 0%, rgba(6,5,4,.65) 38%, rgba(6,5,4,.1) 72%), linear-gradient(0deg, rgba(6,5,4,.62), transparent 55%);
+      z-index: -1;
+    }
+    .hero-copy { padding: 150px 0 82px; max-width: 610px; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2 { font-family: "Bodoni Moda", serif; font-weight: 500; letter-spacing: -.035em; }
+    h1 { font-size: clamp(62px, 9vw, 116px); line-height: .86; margin-bottom: 28px; }
+    .hero p { max-width: 480px; font-size: 19px; color: #dfd4ca; margin-bottom: 32px; }
+    .button {
+      appearance: none;
+      display: inline-flex;
+      min-height: 50px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 20px;
+      border: 1px solid transparent;
+      background: var(--accent);
+      color: var(--accent-ink);
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .button:hover { filter: brightness(1.08); }
+    .button:focus-visible, .choice:focus-visible, .favorite:focus-visible, .clear-filters:focus-visible { outline: 3px solid #e8a797; outline-offset: 3px; }
+    .arrow { font-size: 18px; line-height: 1; }
+    .statement { padding: 120px 0; }
+    .statement-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 9vw; align-items: start; }
+    .statement h2 { font-size: clamp(44px, 6vw, 80px); line-height: 1.02; max-width: 760px; margin-bottom: 32px; }
+    .statement .lead { font-size: 20px; max-width: 680px; }
+    .principles { border-top: 1px solid var(--line); margin-top: 48px; }
+    .principle { display: grid; grid-template-columns: 50px 1fr; gap: 18px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .number { font-family: "Bodoni Moda", serif; color: var(--accent); font-size: 22px; }
+    .principle strong { display:block; margin-bottom: 4px; }
+    .principle p { color: var(--muted); margin:0; }
+    .shop { padding: 112px 0 126px; background: var(--paper); }
+    .shop-heading { display:grid; grid-template-columns:.72fr 1.28fr; gap:9vw; align-items:end; margin-bottom:42px; }
+    .shop-heading h2 { font-size:clamp(54px,7vw,88px); line-height:.94; margin:10px 0 0; }
+    .shop-heading-copy { max-width:620px; }
+    .shop-heading-copy p { color:var(--muted); margin-bottom:0; }
+    .shop-controls { display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:end; margin-bottom:30px; }
+    .control label, .sale-control > span { display:block; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:7px; color:var(--muted); }
+    .control select { width:100%; min-height:46px; border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:0 40px 0 13px; font:600 14px "Manrope", sans-serif; }
+    .sale-control { min-height:46px; }
+    .sale-toggle { min-height:46px; display:flex; align-items:center; gap:9px; padding:0 14px; border:1px solid var(--line); background:var(--paper); cursor:pointer; font-size:14px; font-weight:600; }
+    .sale-toggle input { width:18px; height:18px; margin:0; accent-color:var(--accent); }
+    .shop-meta { display:flex; justify-content:space-between; gap:18px; align-items:center; border-top:1px solid var(--line); padding-top:18px; margin-bottom:18px; color:var(--muted); font-size:13px; }
+    .clear-filters { border:0; background:transparent; color:var(--ink); padding:0; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
+    .product-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:36px 24px; }
+    .product-card { position:relative; min-width:0; cursor:pointer; }
+    .product-card:focus-visible { outline:3px solid var(--accent); outline-offset:7px; }
+    .product-card:hover .product-name { text-decoration:underline; text-decoration-thickness:1px; text-underline-offset:4px; }
+    .product-photo { position:relative; aspect-ratio:4/3; overflow:hidden; background:#fff; }
+    .product-photo > img { width:100%; height:100%; display:block; object-fit:contain; }
+    .bottle { width:27%; min-width:92px; max-width:142px; height:64%; position:relative; display:flex; align-items:flex-end; justify-content:center; filter:drop-shadow(0 14px 12px rgba(22,12,8,.24)); }
+    .bottle-cap { position:absolute; top:0; width:45%; height:18%; background:var(--cap); border:1px solid rgba(255,255,255,.22); }
+    .bottle-neck { position:absolute; top:15%; width:32%; height:12%; background:var(--juice); border-inline:1px solid rgba(255,255,255,.25); }
+    .bottle-body { width:100%; height:78%; position:relative; display:grid; place-items:center; background:var(--juice); border:1px solid rgba(255,255,255,.32); box-shadow:inset 10px 0 18px rgba(255,255,255,.14), inset -12px 0 22px rgba(0,0,0,.12); }
+    .bottle.round .bottle-body { border-radius:45% 45% 26% 26% / 24% 24% 18% 18%; }
+    .bottle.arch .bottle-body { border-radius:48% 48% 8px 8px / 30% 30% 8px 8px; }
+    .bottle.tall { width:22%; height:72%; }
+    .bottle-label { width:72%; min-height:36%; padding:8px 5px; display:grid; place-items:center; text-align:center; background:var(--label); color:var(--label-ink); border:1px solid rgba(0,0,0,.2); font-family:"Bodoni Moda", serif; font-size:clamp(11px,1.4vw,18px); line-height:1.02; letter-spacing:.04em; }
+    .discount { position:absolute; top:12px; left:12px; z-index:2; background:var(--accent); color:var(--accent-ink); padding:6px 9px; font-size:12px; font-weight:700; }
+    .favorite { position:absolute; top:10px; right:10px; z-index:2; width:40px; height:40px; padding:0; display:grid; place-items:center; border:1px solid rgba(33,24,20,.18); border-radius:50%; background:rgba(255,250,244,.9); color:#2b201b; cursor:pointer; }
+    .favorite svg { width:19px; height:19px; fill:transparent; stroke:currentColor; stroke-width:1.8; }
+    .favorite[aria-pressed="true"] { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
+    .favorite[aria-pressed="true"] svg { fill:currentColor; }
+    .product-info { padding-top:14px; }
+    .product-tag { margin:0 0 5px; color:var(--muted); font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .product-direction { margin:0 0 8px; color:var(--muted); font-size:13px; }
+    .product-name { font-family:"Bodoni Moda", serif; font-size:clamp(22px,2.5vw,31px); line-height:1.08; margin-bottom:7px; }
+    .rating { display:flex; align-items:center; gap:7px; min-height:22px; color:var(--muted); font-size:12px; }
+    .new-badge { display:inline-block; padding:4px 8px; background:var(--ink); color:var(--paper); font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
+    .price-row { display:flex; flex-wrap:wrap; align-items:baseline; gap:9px; margin-top:10px; }
+    .sale-price { font-size:20px; font-weight:800; }
+    .original-price { color:var(--muted); text-decoration:line-through; font-size:14px; }
+    .empty-products { grid-column:1/-1; padding:54px 0; border-block:1px solid var(--line); color:var(--muted); text-align:center; }
+    .product-dialog[hidden] { display:none; }
+    .product-dialog { position:fixed; inset:0; z-index:50; display:grid; place-items:center; padding:24px; }
+    .dialog-backdrop { position:absolute; inset:0; background:rgba(8,6,5,.76); }
+    .dialog-panel { position:relative; width:min(980px, 100%); max-height:calc(100dvh - 48px); overflow:auto; display:grid; grid-template-columns:minmax(0, 1.05fr) minmax(340px, .95fr); background:var(--paper); color:var(--ink); box-shadow:0 32px 90px rgba(0,0,0,.42); }
+    .dialog-photo { min-height:560px; position:relative; overflow:hidden; background:#fff; touch-action:pan-y; }
+    .gallery-track { position:absolute; inset:0; display:flex; transition:transform .38s cubic-bezier(.22,.68,.18,1); }
+    .gallery-slide { flex:0 0 100%; min-width:0; height:100%; }
+    .gallery-slide img { width:100%; height:100%; display:block; object-fit:contain; user-select:none; -webkit-user-drag:none; }
+    .gallery-arrow { position:absolute; z-index:2; top:50%; width:44px; height:44px; transform:translateY(-50%); border:1px solid rgba(33,24,20,.18); border-radius:50%; display:grid; place-items:center; padding:0 0 4px; background:rgba(255,250,244,.92); color:#2b201b; cursor:pointer; font-size:30px; line-height:1; box-shadow:0 7px 22px rgba(25,16,12,.14); }
+    .gallery-arrow:hover { border-color:var(--accent); }
+    .gallery-prev { left:14px; }
+    .gallery-next { right:14px; }
+    .gallery-dots { position:absolute; z-index:2; left:50%; bottom:17px; transform:translateX(-50%); display:flex; gap:8px; padding:8px 10px; border-radius:18px; background:rgba(18,14,12,.74); }
+    .gallery-dot { width:9px; height:9px; padding:0; border:1px solid #fff7ee; border-radius:50%; background:transparent; cursor:pointer; }
+    .gallery-dot[aria-current="true"] { background:#fff7ee; }
+    .gallery-arrow[hidden], .gallery-dots[hidden] { display:none; }
+    .gallery-arrow:focus-visible, .gallery-dot:focus-visible, .dialog-photo:focus-visible { outline:3px solid #e8a797; outline-offset:3px; }
+    .sr-only { position:absolute!important; width:1px!important; height:1px!important; padding:0!important; margin:-1px!important; overflow:hidden!important; clip:rect(0,0,0,0)!important; white-space:nowrap!important; border:0!important; }
+    .dialog-copy { padding:clamp(32px, 5vw, 58px); display:flex; flex-direction:column; justify-content:center; }
+    .dialog-close { position:absolute; top:14px; right:14px; z-index:2; width:44px; height:44px; border:1px solid var(--line); border-radius:50%; background:var(--paper); color:var(--ink); cursor:pointer; font-size:26px; line-height:1; }
+    .dialog-close:hover { border-color:var(--accent); }
+    .dialog-close:focus-visible, .product-card:focus-visible { outline:3px solid #e8a797; outline-offset:3px; }
+    .dialog-copy .product-tag { margin-bottom:10px; }
+    .dialog-title { font-family:"Bodoni Moda", serif; font-size:clamp(40px, 5vw, 66px); line-height:.98; font-weight:500; letter-spacing:-.035em; margin-bottom:14px; }
+    .dialog-description { color:var(--muted); margin:20px 0 4px; }
+    .dialog-price { margin:22px 0 0; }
+    .dialog-price .sale-price { font-size:26px; }
+    .availability-note { margin:28px 0 0; padding:18px 0; border-block:1px solid var(--line); }
+    .availability-note strong { display:block; margin-bottom:3px; }
+    .availability-note p { margin:0; color:var(--muted); font-size:14px; }
+    .order-button {
+      width:100%;
+      margin-top:16px;
+      min-height:58px;
+      justify-content:flex-start;
+      padding:12px 18px;
+      background:linear-gradient(118deg, #6f2a78 0%, #a52b45 48%, #cf5b2e 100%);
+      box-shadow:0 10px 28px rgba(115,32,66,.22);
+    }
+    .order-button:hover { filter:brightness(1.08); }
+    .order-button svg { width:25px; height:25px; flex:0 0 auto; }
+    .order-button-copy { display:flex; flex-direction:column; align-items:flex-start; line-height:1.2; }
+    .order-button-copy strong { font-size:15px; }
+    .order-button-copy small { margin-top:3px; font-size:11px; font-weight:600; opacity:.86; }
+    .order-actions { display:grid; grid-template-columns:minmax(0, 1fr) minmax(0, 1fr); gap:10px; }
+    .order-actions[hidden], .instagram-fallback[hidden] { display:none; }
+    .whatsapp-button {
+      width:100%;
+      margin-top:16px;
+      min-height:58px;
+      justify-content:flex-start;
+      padding:12px 18px;
+      background:#128c7e;
+      color:#fff;
+      box-shadow:0 10px 28px rgba(18,140,126,.2);
+    }
+    .whatsapp-button:hover { filter:brightness(1.08); }
+    .whatsapp-button:focus-visible { outline:3px solid #e8a797; outline-offset:3px; }
+    .whatsapp-button svg { width:25px; height:25px; flex:0 0 auto; }
+    .order-actions.has-card-payment .card-payment-button { grid-column:1 / -1; }
+    .card-payment-button {
+      width:100%;
+      margin-top:16px;
+      min-height:58px;
+      justify-content:flex-start;
+      padding:12px 18px;
+      background:var(--ink);
+      color:var(--paper);
+      border-color:var(--ink);
+      box-shadow:0 10px 28px rgba(33,24,20,.16);
+    }
+    .card-payment-button[hidden] { display:none; }
+    .card-payment-button:hover { filter:brightness(1.16); }
+    .card-payment-button:focus-visible { outline:3px solid #e8a797; outline-offset:3px; }
+    .card-payment-button svg { width:25px; height:25px; flex:0 0 auto; }
+    .instagram-fallback { align-self:center; margin-top:10px; color:var(--muted); font-size:12px; text-underline-offset:3px; }
+    .instagram-fallback:hover { color:var(--ink); }
+    body.dialog-open { overflow:hidden; }
+    .profile { background: var(--paper-2); padding: 100px 0; }
+    .profile-grid { display:grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; }
+    .profile h2 { font-size: clamp(46px, 6vw, 78px); line-height: .98; margin: 12px 0 26px; }
+    .profile-intro p { max-width: 410px; color: var(--muted); }
+    .quiz { background: var(--panel); box-shadow: var(--shadow); padding: clamp(26px, 5vw, 54px); }
+    .progress { display:flex; gap:8px; margin-bottom:36px; }
+    .progress span { height: 3px; flex:1; background: var(--line); }
+    .progress span.active { background: var(--accent); }
+    .question { display:none; }
+    .question.active { display:block; }
+    .question h3 { font-family: "Bodoni Moda", serif; font-size: clamp(30px,4vw,44px); line-height:1.12; font-weight:500; margin-bottom: 24px; }
+    .choices { display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
+    .choice {
+      text-align:left;
+      border:1px solid var(--line);
+      background:transparent;
+      color:var(--ink);
+      padding:18px;
+      min-height:90px;
+      cursor:pointer;
+    }
+    .choice:hover { border-color: var(--accent); }
+    .choice strong { display:block; margin-bottom:4px; }
+    .choice small { color:var(--muted); font-size:13px; }
+    .result { display:none; }
+    .result.show { display:block; }
+    .result-name { font-family:"Bodoni Moda", serif; font-size:clamp(42px,6vw,70px); line-height:1; color:var(--accent); margin:10px 0 20px; }
+    .result p { color:var(--muted); }
+    .result .notes { margin: 26px 0 32px; padding:20px 0; border-block:1px solid var(--line); }
+    .note-row { display:flex; justify-content:space-between; gap:16px; padding:5px 0; }
+    .note-row span:first-child { color:var(--muted); }
+    .result-actions { display:flex; flex-wrap:wrap; gap:10px; }
+    .secondary { background:transparent; border-color:var(--line); color:var(--ink); }
+    .drop { padding: 120px 0 132px; }
+    .drop-box { display:grid; grid-template-columns: 1fr 1fr; gap: 6vw; align-items:end; border-top:1px solid var(--line); padding-top:48px; }
+    .drop h2 { font-size:clamp(46px,6vw,76px); line-height:1; margin: 10px 0 0; }
+    .drop-copy { max-width:560px; }
+    .drop-copy p { font-size:18px; color:var(--muted); }
+    .drop-copy strong { color:var(--ink); }
+    footer { border-top:1px solid var(--line); padding:28px 0 40px; color:var(--muted); font-size:13px; }
+    footer .wrap { display:flex; justify-content:space-between; gap:20px; }
+    @media (max-width: 760px) {
+      .wrap { width:min(100% - 32px, 1180px); }
+      .toprail { padding:20px 16px; }
+      .toprail nav { gap:16px; }
+      .toprail nav a:first-child, .toprail nav a:last-child { display:none; }
+      .hero { min-height: 690px; background-position: 63% center; }
+      .hero::after { background: linear-gradient(0deg, rgba(6,5,4,.9) 0%, rgba(6,5,4,.58) 58%, rgba(6,5,4,.18) 100%); }
+      .hero-copy { padding: 120px 0 58px; }
+      h1 { font-size:68px; }
+      .hero p { font-size:16px; max-width:340px; }
+      .statement, .drop, .shop { padding:82px 0; }
+      .statement-grid, .profile-grid, .drop-box, .shop-heading { grid-template-columns:1fr; gap:32px; }
+      .shop-heading { margin-bottom:30px; }
+      .shop-controls { grid-template-columns:1fr 1fr; gap:12px; }
+      .sale-control { grid-column:1 / -1; }
+      .product-grid { gap:28px 12px; }
+      .product-photo { aspect-ratio:3/4; }
+      .bottle { width:45%; min-width:0; height:60%; }
+      .bottle.tall { width:36%; height:68%; }
+      .discount { top:8px; left:8px; padding:5px 7px; font-size:10px; }
+      .favorite { top:7px; right:7px; width:36px; height:36px; }
+      .product-info { padding-top:11px; }
+      .product-name { font-size:20px; }
+      .rating { align-items:flex-start; flex-direction:column; gap:1px; }
+      .sale-price { font-size:18px; }
+      .original-price { font-size:12px; }
+      .product-dialog { align-items:end; padding:0; }
+      .dialog-panel { width:100%; max-height:92dvh; grid-template-columns:1fr; }
+      .dialog-photo { min-height:0; aspect-ratio:4/3; }
+      .gallery-arrow { width:40px; height:40px; }
+      .gallery-prev { left:10px; }
+      .gallery-next { right:10px; }
+      .gallery-dots { bottom:11px; }
+      .dialog-copy { padding:28px 20px 30px; }
+      .dialog-title { font-size:40px; }
+      .dialog-description { margin-top:16px; }
+      .availability-note { margin-top:22px; }
+      .profile { padding:78px 0; }
+      .quiz { padding:24px 18px 26px; }
+      .choices { grid-template-columns:1fr; }
+      .choice { min-height:76px; }
+      footer .wrap { display:block; }
+      footer p { margin-bottom:8px; }
+    }
+    .cart-button {
+      position: relative;
+      appearance: none;
+      background: none;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      padding: 6px;
+      opacity: .9;
+    }
+    .cart-button:hover { opacity: 1; }
+    .cart-button svg { width: 24px; height: 24px; }
+    .cart-count {
+      position: absolute;
+      top: 0; right: 0;
+      min-width: 18px; height: 18px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-size: 11px; font-weight: 700;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0 4px;
+      letter-spacing: 0;
+    }
+    .cart-backdrop {
+      position: fixed; inset: 0; z-index: 60;
+      background: rgba(20,12,8,.5);
+    }
+    .cart-panel {
+      position: fixed; z-index: 61;
+      top: 0; right: 0; bottom: 0;
+      width: min(420px, 92vw);
+      background: var(--paper); color: var(--ink);
+      display: flex; flex-direction: column;
+      box-shadow: var(--shadow);
+    }
+    .cart-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+    .cart-head h2 { font-size: 26px; margin: 0; }
+    .cart-close { appearance: none; background: none; border: 0; font-size: 28px; line-height: 1; cursor: pointer; color: inherit; padding: 4px 8px; }
+    .cart-items { flex: 1; overflow-y: auto; padding: 8px 22px; }
+    .cart-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: center; }
+    .cart-item img { width: 64px; height: 64px; object-fit: cover; border-radius: 6px; background: var(--photo); }
+    .cart-item-info { flex: 1; }
+    .cart-item-info strong { display: block; font-size: 14px; margin-bottom: 2px; }
+    .cart-item-info .cart-unit { color: var(--muted); font-size: 13px; }
+    .qty { display: flex; align-items: center; gap: 10px; }
+    .qty button { appearance: none; width: 28px; height: 28px; border: 1px solid var(--line); background: none; color: inherit; font-size: 16px; cursor: pointer; border-radius: 4px; }
+    .cart-line-total { font-weight: 700; min-width: 64px; text-align: right; }
+    .cart-empty { padding: 40px 0; color: var(--muted); text-align: center; }
+    .cart-foot { padding: 18px 22px 22px; border-top: 1px solid var(--line); }
+    .cart-total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
+    .cart-checkout { width: 100%; }
+    .cart-note { margin-top: 10px; font-size: 12px; color: var(--muted); text-align: center; }
+    .add-cart-btn {
+      appearance: none; display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      margin-top: 10px; padding: 9px 14px;
+      border: 1px solid var(--ink); background: transparent; color: var(--ink);
+      font-size: 13px; font-weight: 700; cursor: pointer; width: 100%;
+    }
+    .add-cart-btn:hover { background: var(--ink); color: var(--paper); }
+    .cart-toast {
+      position: fixed; z-index: 70; left: 50%; bottom: 26px; transform: translateX(-50%) translateY(20px);
+      background: var(--ink); color: var(--paper);
+      padding: 12px 20px; border-radius: 6px; font-size: 14px; font-weight: 600;
+      opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s;
+      max-width: calc(100vw - 40px); text-align: center;
+    }
+    .cart-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .cart-panel[hidden], .cart-backdrop[hidden] { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      .gallery-track { transition:none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="toprail" aria-label="Page navigation">
+    <div class="edition">VOL. 01 · 2026</div>
+    <nav>
+      <a href="#standard">The standard</a>
+      <a href="#shop">Shop all</a>
+      <a href="#profile">Scent profile</a>
+      <a href="#drop">First drop</a>
+      <button class="cart-button" type="button" id="cartButton" aria-label="Open shopping cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 8h15l-1.5 9h-12z"></path><path d="M6 8l-1-4H2.5"></path><circle cx="9.5" cy="20" r="1.4"></circle><circle cx="17.5" cy="20" r="1.4"></circle></svg>
+        <span class="cart-count" id="cartCount" hidden>0</span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-copy">
+        <p class="eyebrow">Fragrance with presence</p>
+        <h1 id="hero-title">Wear it loud.</h1>
+        <p>Rich, expressive scent directions for people who want their fragrance to arrive before they do—and remain after they leave.</p>
+        <a class="button" href="#profile">Find your direction <span class="arrow" aria-hidden="true">↘</span></a>
+      </div>
+    </section>
+
+    <section class="statement" id="standard">
+      <div class="wrap statement-grid">
+        <p class="eyebrow">The Sillage Standard</p>
+        <div>
+          <h2>The goal is not a whisper.</h2>
+          <p class="lead">We believe a memorable fragrance needs shape, contrast and an unmistakable trail. Every direction begins with a simple question: does it hold the room?</p>
+          <div class="principles">
+            <div class="principle">
+              <span class="number">01</span>
+              <div><strong>Presence first</strong><p>Profiles built around bold woods, luminous fruits, warm resins and clean musks.</p></div>
+            </div>
+            <div class="principle">
+              <span class="number">02</span>
+              <div><strong>Easy to understand</strong><p>No perfume vocabulary required. Choose a mood, a temperature and the impression you want to leave.</p></div>
+            </div>
+            <div class="principle">
+              <span class="number">03</span>
+              <div><strong>Your taste, sharpened</strong><p>Familiar scent ideas, pushed toward more character and a stronger signature.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shop" id="shop" aria-labelledby="shop-title">
+      <div class="wrap">
+        <div class="shop-heading">
+          <div>
+            <h2 id="shop-title">Shop all</h2>
+          </div>
+          <div class="shop-heading-copy">
+            <p>Explore 40 new arrivals selected for presence, performance and a memorable trail.</p>
+          </div>
+        </div>
+
+        <div class="shop-controls" aria-label="Shop filters">
+          <div class="control">
+            <label for="sortProducts">Sort by</label>
+            <select id="sortProducts">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+              <option value="name">Name: A to Z</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="categoryFilter">Category</label>
+            <select id="categoryFilter">
+              <option value="all">All categories</option>
+              <option value="amber">Amber &amp; spice</option>
+              <option value="fresh">Fresh &amp; aromatic</option>
+              <option value="sweet">Sweet &amp; gourmand</option>
+              <option value="woody">Woody &amp; smoky</option>
+            </select>
+          </div>
+          <div class="sale-control">
+            <span>Offers</span>
+            <label class="sale-toggle" for="saleOnly">
+              <input type="checkbox" id="saleOnly" />
+              On sale
+            </label>
+          </div>
+        </div>
+
+        <div class="shop-meta">
+          <span id="resultCount">0 new arrivals</span>
+          <button class="clear-filters" type="button" id="clearFilters">Clear filters</button>
+        </div>
+        <div class="product-grid" id="productGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="profile" id="profile">
+      <div class="wrap profile-grid">
+        <div class="profile-intro">
+          <p class="eyebrow">Three quick choices</p>
+          <h2>What should your scent say?</h2>
+          <p>Build a personal scent brief now. Use it as your guide while you explore the collection.</p>
+        </div>
+        <div class="quiz" aria-live="polite">
+          <div class="progress" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+          <div class="question active" data-step="0">
+            <h3>Choose your atmosphere.</h3>
+            <div class="choices">
+              <button class="choice" data-score="smoke"><strong>After midnight</strong><small>Dark rooms, sharp tailoring, low light</small></button>
+              <button class="choice" data-score="amber"><strong>Golden hour</strong><small>Warm skin, open air, slow evenings</small></button>
+              <button class="choice" data-score="fresh"><strong>First light</strong><small>Cool air, clean lines, clear focus</small></button>
+              <button class="choice" data-score="velvet"><strong>Private lounge</strong><small>Soft texture, polished detail, quiet confidence</small></button>
+            </div>
+          </div>
+          <div class="question" data-step="1">
+            <h3>Pick the material you would wear.</h3>
+            <div class="choices">
+              <button class="choice" data-score="smoke"><strong>Black leather</strong><small>Dry, commanding, slightly dangerous</small></button>
+              <button class="choice" data-score="amber"><strong>Burnished gold</strong><small>Radiant, spiced, magnetic</small></button>
+              <button class="choice" data-score="fresh"><strong>Crisp cotton</strong><small>Airy, effortless, precise</small></button>
+              <button class="choice" data-score="velvet"><strong>Deep velvet</strong><small>Plush, smooth, intimate</small></button>
+            </div>
+          </div>
+          <div class="question" data-step="2">
+            <h3>How do you want to enter the room?</h3>
+            <div class="choices">
+              <button class="choice" data-score="smoke"><strong>Unapologetically</strong><small>Make the impact immediate</small></button>
+              <button class="choice" data-score="amber"><strong>Charismatically</strong><small>Warm, social and impossible to miss</small></button>
+              <button class="choice" data-score="fresh"><strong>Impeccably</strong><small>Fresh, composed and put together</small></button>
+              <button class="choice" data-score="velvet"><strong>Mysteriously</strong><small>Draw people closer</small></button>
+            </div>
+          </div>
+          <div class="result">
+            <p class="eyebrow">Your scent direction</p>
+            <div class="result-name" id="resultName"></div>
+            <p id="resultDescription"></p>
+            <div class="notes" id="resultNotes"></div>
+            <div class="result-actions">
+              <button class="button" id="downloadBtn">Download my scent brief</button>
+              <button class="button secondary" id="restartBtn">Start over</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="drop" id="drop">
+      <div class="wrap drop-box">
+        <div>
+          <p class="eyebrow">Collection status</p>
+          <h2>The first drop has arrived.</h2>
+        </div>
+        <div class="drop-copy">
+          <p><strong>Forty scents, selected with intention.</strong> Browse the new arrivals and use your scent brief to narrow the collection to the profiles that suit you best.</p>
+          <a href="#profile">Build or revisit your profile →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="product-dialog" id="productDialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" aria-describedby="dialogDescription" hidden>
+    <div class="dialog-backdrop" data-dialog-close aria-hidden="true"></div>
+    <div class="dialog-panel" role="document">
+      <button class="dialog-close" type="button" id="dialogClose" aria-label="Close product details">×</button>
+      <div class="dialog-photo" id="dialogGallery" role="group" aria-label="Product photo gallery" tabindex="0">
+        <div class="gallery-track" id="galleryTrack"></div>
+        <button class="gallery-arrow gallery-prev" type="button" id="galleryPrev" aria-label="Previous product photo">‹</button>
+        <button class="gallery-arrow gallery-next" type="button" id="galleryNext" aria-label="Next product photo">›</button>
+        <div class="gallery-dots" id="galleryDots" aria-label="Choose product photo"></div>
+        <p class="sr-only" id="galleryStatus" aria-live="polite"></p>
+      </div>
+      <div class="dialog-copy">
+        <p class="product-tag" id="dialogTag"></p>
+        <h2 class="dialog-title" id="dialogTitle"></h2>
+        <p class="product-direction" id="dialogDirection"></p>
+        <div class="rating" id="dialogRating"></div>
+        <p class="dialog-description" id="dialogDescription"></p>
+        <div class="price-row dialog-price" id="dialogPrice"></div>
+        <div class="order-actions" id="orderActions">
+          <a class="button order-button" id="orderButton" href="https://ig.me/m/boss1992alfred" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.4" cy="6.7" r="1" fill="currentColor" stroke="none"></circle>
+            </svg>
+            <span class="order-button-copy"><strong>DM to Order</strong><small>Message @boss1992alfred on Instagram</small></span>
+          </a>
+          <a class="button whatsapp-button" id="whatsappButton" href="https://wa.me/15086236401" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3.5 20.5l1.4-4.3A8.5 8.5 0 1 1 20.5 11.6Z"></path>
+              <path d="M8.2 7.8c.2-.4.4-.4.7-.4h.4c.1 0 .3 0 .4.4l.8 1.9c.1.2.1.4 0 .6l-.6.7c-.2.2-.2.3-.1.6.4.8 1 1.5 1.7 2 .7.5 1.4.9 2.2 1.1.3.1.4 0 .6-.2l.8-1c.2-.2.4-.3.6-.2l2 .9c.3.1.4.2.4.4 0 .3-.2 1.5-.8 2.1-.6.6-1.5.8-2.4.6-1.2-.3-2.6-.8-4.4-1.9a11.7 11.7 0 0 1-3.7-3.8c-.9-1.5-1-2.8-.7-3.5.2-.6.6-1.1 1.1-1.4"></path>
+            </svg>
+            <span class="order-button-copy"><strong>Chat to Order</strong><small>Message on WhatsApp</small></span>
+          </a>
+          <button class="button" type="button" id="dialogAddCart">
+            <span class="order-button-copy"><strong>Add to Cart</strong><small>Keep shopping, check out once</small></span>
+          </button>
+          <a class="button card-payment-button" id="cardPaymentButton" href="https://buy.stripe.com/dRmeVf4YFbEg4tQ8ODf7i00" target="_blank" rel="noopener noreferrer" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <rect x="2.5" y="5" width="19" height="14" rx="2"></rect>
+              <path d="M2.5 9.5h19M6 15h4"></path>
+            </svg>
+            <span class="order-button-copy"><strong>Pay with Card</strong><small>Secure checkout</small></span>
+          </a>
+        </div>
+        <div class="availability-note" id="soldOutState" hidden>
+          <strong>Sold Out</strong>
+          <p>This fragrance is currently unavailable.</p>
+        </div>
+        <a class="instagram-fallback" id="instagramFallback" href="https://www.instagram.com/boss1992alfred/" target="_blank" rel="noopener noreferrer">Instagram not opening? Visit @boss1992alfred</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <p>Sillage Standard · Independent fragrance direction</p>
+      <p>Made for presence, selected with intention.</p>
+    </div>
+  </footer>
+
+  <div class="cart-backdrop" id="cartBackdrop" hidden></div>
+  <aside class="cart-panel" id="cartPanel" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
+    <div class="cart-head">
+      <h2 id="cartTitle">Your cart</h2>
+      <button class="cart-close" type="button" id="cartClose" aria-label="Close cart">×</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-foot" id="cartFoot" hidden>
+      <div class="cart-total-row"><span>Total</span><span id="cartTotal"></span></div>
+      <a class="button cart-checkout" id="cartCheckout" href="https://wa.me/15086236401" target="_blank" rel="noopener noreferrer">Order via WhatsApp</a>
+      <p class="cart-note">Checkout opens WhatsApp with your order ready to send.</p>
+    </div>
+  </aside>
+  <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
+
+  <script>
+    (function () {
+      var scores = { smoke: 0, amber: 0, fresh: 0, velvet: 0 };
+      var step = 0;
+      var questions = document.querySelectorAll('.question');
+      var bars = document.querySelectorAll('.progress span');
+      var result = document.querySelector('.result');
+      var profiles = {
+        smoke: { name: 'Smoked Woods', description: 'You lean toward a dry, dark signature with real authority. Look for fragrances that pair textured woods with spice and a restrained sweetness.', top: 'Black pepper · saffron', heart: 'Cedar · incense', base: 'Leather · smoked woods' },
+        amber: { name: 'Radiant Amber', description: 'You want warmth that carries. Your best direction is bright spice over a glowing, resinous base—charismatic without losing depth.', top: 'Bergamot · warm spice', heart: 'Amber · orange blossom', base: 'Vanilla · resinous woods' },
+        fresh: { name: 'Electric Fresh', description: 'You prefer clarity, energy and a polished finish. Look for a fresh profile with enough mineral wood and musk underneath to feel substantial.', top: 'Citrus peel · cool herbs', heart: 'Aromatic greens · mineral air', base: 'Clean musk · pale woods' },
+        velvet: { name: 'Velvet Reserve', description: 'You choose depth over volume: smooth, enveloping and quietly magnetic. Your lane balances dark fruit or florals with creamy woods.', top: 'Dark fruit · soft spice', heart: 'Rose · suede accord', base: 'Sandalwood · tonka' }
+      };
+      var currentProfile = null;
+
+      // EDIT THIS ONE LIST to update the shop inventory.
+      var productsCatalog = [
+        { name:'Lattafa Asad Elixir Cologne for Men', niche:'Lattafa · Men · 3.4 oz EDP', direction:'Dark spice, lavender and amber woods', description:'Bold and concentrated, with aromatic spice, smooth lavender and a warm amber-wood finish. Widely considered a Dior Sauvage Elixir-style alternative for commanding evening wear.', category:'amber', images:[{src:'assets/product-lattafa-asad-elixir.jpg', alt:'Lattafa Asad Elixir bottle and box — clean packshot'}], price:39, originalPrice:45, featured:1, paymentLink:'https://buy.stripe.com/cNi8wR1Mt23G4tQ5Crf7i01' },
+        { name:'Dumont Nitro Intense Cologne for Men', niche:'Dumont · Men · 3.4 oz EDP', direction:'Fruity freshness over smoky woods', description:'A vivid opening of fresh fruit and citrus settles into smoky woods and musk. Energetic up top, darker and more grounded through the drydown.', category:'woody', images:[{src:'assets/product-dumont-nitro-intense.jpg', alt:'Dumont Nitro Intense bottle and box — clean packshot'},{src:'assets/gallery-dumont-nitro-intense-1.jpg', alt:'Dumont Nitro Intense Cologne for Men — customer photo 1'},{src:'assets/gallery-dumont-nitro-intense-2.jpg', alt:'Dumont Nitro Intense Cologne for Men — customer photo 2'}], price:37, originalPrice:44, featured:2 },
+        { name:'Rasasi Hawas Cologne for Men', niche:'Rasasi · Men · 3.38 oz EDP', direction:'Aquatic citrus with sweet amber', description:'Bright citrus and crisp aquatic freshness meet a lightly sweet amber-musk base. Clean, vibrant and easy to wear from daytime into the evening.', category:'fresh', images:[{src:'assets/product-rasasi-hawas.jpg', alt:'Rasasi Hawas bottle and box — clean packshot'}], price:45, originalPrice:65, featured:3 },
+        { name:'Jimmy Choo Illicit Flower Perfume for Women', niche:'Jimmy Choo · Women · 3.3 oz EDT', direction:'Sparkling fruit, rose and soft musk', description:'A graceful fruity-floral blend with a bright opening, delicate rose and a smooth musky finish. Polished, feminine and effortless for everyday wear.', category:'fresh', images:[{src:'assets/product-jimmy-choo-illicit-flower.jpg', alt:'Jimmy Choo Illicit Flower bottle and box — clean packshot'}], price:59, originalPrice:79, featured:4 },
+        { name:'Afnan 9PM Elixir Perfume for Unisex', niche:'Afnan · Unisex · 3.4 oz Parfum Intense', direction:'Aromatic spice and warm vanilla woods', description:'Deep spice and aromatic freshness lead into a rich, smooth base of vanilla-toned woods. A powerful unisex choice with a dressed-up evening feel.', category:'amber', images:[{src:'assets/product-afnan-9pm-elixir.jpg', alt:'Afnan 9PM Elixir bottle and box — clean packshot'},{src:'assets/gallery-afnan-9pm-elixir-1.jpg', alt:'Afnan 9PM Elixir Perfume for Unisex — customer photo 1'}], price:44, originalPrice:55, featured:5, paymentLink:'https://buy.stripe.com/aFaaEZ4YF0ZC5xU6Gvf7i02' },
+        { name:'Bentley Intense Cologne for Men', niche:'Bentley · Men · 3.4 oz EDP', direction:'Rum, leather and smoky woods', description:'Warm rum and spice flow into leather, incense and dark woods. Rich, confident and best suited to cool weather or an evening setting.', category:'woody', images:[{src:'assets/product-bentley-intense.jpg', alt:'Bentley Intense bottle and box — clean packshot'},{src:'assets/bentley-intense-real-1.jpg', alt:'Bentley Intense Cologne for Men — actual full unboxed bottle'}], price:40, originalPrice:52, featured:6 },
+        { name:'Lattafa Pride Peace & Love Perfume for Unisex', niche:'Lattafa Pride · Unisex · 3.4 oz EDP', direction:'Soft florals, creamy woods and amber', description:'A smooth, comforting blend of luminous florals, creamy woods and mellow amber. Refined and easygoing, with a softly enveloping trail.', category:'amber', images:[{src:'assets/product-lattafa-peace-love.jpg', alt:'Lattafa Pride Peace and Love bottle and box — clean packshot'}], price:34, originalPrice:40, featured:7 },
+        { name:'Lattafa Yara Elixir Perfume for Women', niche:'Lattafa · Women · 3.4 oz EDP', direction:'Lush berries, vanilla and warm amber', description:'Juicy fruit and soft florals melt into creamy vanilla and warm amber. Sweet, playful and plush without losing its polished finish.', category:'sweet', images:[{src:'assets/lattafa-yara-elixir-1.jpg', alt:'Lattafa Yara Elixir bottle on a clean white background'},{src:'assets/lattafa-yara-elixir-2.jpg', alt:'Lattafa Yara Elixir bottle in a pink fragrance composition'},{src:'assets/lattafa-yara-elixir-3.jpg', alt:'Lattafa Yara Elixir bottle and box with berries, vanilla and caramel notes'},{src:'assets/lattafa-yara-elixir-4.jpg', alt:'Lattafa Yara Elixir bottle with berries, vanilla and caramel notes'}], price:39, originalPrice:44, featured:8, paymentLink:'https://buy.stripe.com/dRmeVf4YFbEg4tQ8ODf7i00' },
+        { name:'Rasasi Hawas Fire Cologne for Men', niche:'Rasasi · Men · 3.38 oz EDP', direction:'Red fruits, aromatic freshness and woods', description:'A vibrant mix of juicy fruit and crisp aromatics gains depth from spice and polished woods. Fresh at first spray, then warmer and more intense.', category:'fresh', images:[{src:'assets/product-rasasi-hawas-fire.jpg', alt:'Rasasi Hawas Fire bottle and box — clean packshot'},{src:'assets/gallery-rasasi-hawas-fire-1.jpg', alt:'Rasasi Hawas Fire Cologne for Men — customer photo 1'},{src:'assets/gallery-rasasi-hawas-fire-2.jpg', alt:'Rasasi Hawas Fire Cologne for Men — customer photo 2'}], price:54, originalPrice:75, featured:9 },
+        { name:'Armaf Odyssey Mega Cologne for Men', niche:'Armaf · Men · 3.4 oz EDP', direction:'Citrus, ginger and aromatic woods', description:'Zesty citrus and ginger create a brisk opening before aromatic herbs and clean woods take over. Modern, bright and made for everyday momentum.', category:'fresh', images:[{src:'assets/product-armaf-odyssey-mega.jpg', alt:'Armaf Odyssey Mega bottle and yellow box — clean packshot'}], price:31, originalPrice:38, featured:10 },
+        { name:'Lattafa Maison Alhambra Delilah Perfume for Women', niche:'Maison Alhambra · Women · 3.4 oz EDP', direction:'Rose, tart fruit and soft vanilla musk', description:'Tart fruit brightens a romantic rose heart, while vanilla and musk soften the finish. Airy, graceful and quietly sweet.', category:'fresh', images:[{src:'assets/product-maison-alhambra-delilah.jpg', alt:'Maison Alhambra Delilah bottle and pink box — clean packshot'}], price:28, originalPrice:34, featured:11 },
+        { name:'Barakkat Satin Oud Perfume for Unisex', niche:'Barakkat · Unisex · 3.4 oz EDP', direction:'Velvety rose, oud and vanilla amber', description:'Velvety rose meets dark oud and a warm vanilla-amber base. Opulent and smooth, with the kind of depth that suits evenings and special occasions.', category:'woody', images:[{src:'assets/product-barakkat-satin-oud.jpg', alt:'Barakkat Satin Oud bottle and decorative box — clean packshot'}], price:22, originalPrice:27, featured:12 },
+        { name:'Lattafa Angham Perfume for Unisex', niche:'Lattafa · Unisex · 3.4 oz EDP', direction:'Spiced vanilla, praline and tonka', description:'A warm gourmand profile built around sweet spice, creamy vanilla and nutty praline. Cozy and expressive, with a smooth tonka-rich finish.', category:'sweet', images:[{src:'assets/product-lattafa-angham.jpg', alt:'Lattafa Angham bottle and box — clean packshot'}], price:34, originalPrice:40, featured:13 },
+        { name:'Lattafa Her Confession Perfume for Women', niche:'Lattafa · Women · 3.4 oz EDP', direction:'White florals, spice and creamy vanilla', description:'Luminous white florals are wrapped in gentle spice, creamy vanilla and soft woods. Elegant and sensual, with warmth that lingers close to the skin.', category:'amber', images:[{src:'assets/product-lattafa-her-confession.jpg', alt:'Lattafa Her Confession bottle and white box — clean packshot'}], price:42, originalPrice:48, featured:14 },
+        { name:'Lattafa Fakhar Cologne for Men', niche:'Lattafa · Men · 3.4 oz EDP', direction:'Fresh apple, aromatics and smooth woods', description:'Crisp fruit and bright aromatics open cleanly before settling into smooth woods and tonka warmth. Versatile, polished and easy to reach for.', category:'fresh', images:[{src:'assets/product-lattafa-fakhar.jpg', alt:'Lattafa Fakhar bottle and patterned box — clean packshot'}], price:28, originalPrice:34, featured:15 },
+        { name:'Afnan 9PM Cologne for Men', niche:'Afnan · Men · 3.4 oz EDP', direction:'Apple, cinnamon and amber vanilla', description:'Sweet apple and cinnamon lift an aromatic heart, then give way to a warm amber-vanilla base. Bold, youthful and built for nights out.', category:'sweet', images:[{src:'assets/product-afnan-9pm.jpg', alt:'Afnan 9PM bottle and black box — clean packshot'}], price:32, originalPrice:40, featured:16 },
+        { name:'Al Haramain Amber Oud Gold Edition Perfume for Unisex', niche:'Al Haramain · Unisex · 2.0 oz EDP', direction:'Sweet fruits, vanilla and clean musk', description:'A bright, juicy fruit accord glides into creamy vanilla, amber and clean musk. Radiant and attention-grabbing, with a sweet unisex signature.', category:'sweet', images:[{src:'assets/product-al-haramain-amber-oud-gold.jpg', alt:'Al Haramain Amber Oud Gold Edition bottle and box — clean packshot'}], price:49, originalPrice:68, featured:17 },
+        { name:'Lattafa Asad Bourbon Perfume for Unisex', niche:'Lattafa · Unisex · 3.4 oz EDP', direction:'Plum, spice and smooth vanilla woods', description:'Rich plum and warm spice open into a smooth blend of cacao-toned sweetness, vanilla and woods. Deep and inviting without feeling overly heavy.', category:'amber', images:[{src:'assets/product-lattafa-asad-bourbon.jpg', alt:'Lattafa Asad Bourbon bottle and brown box — clean packshot'}], price:34, originalPrice:40, featured:18 },
+        { name:'Lattafa Khamrah Qahwa Perfume for Unisex', niche:'Lattafa · Unisex · 3.4 oz EDP', direction:'Coffee, cinnamon and vanilla praline', description:'Roasted coffee and warming spice enrich a sweet base of vanilla and praline. Dense, cozy and deliciously bold for cooler days and late nights.', category:'sweet', images:[{src:'assets/product-lattafa-khamrah-qahwa.jpg', alt:'Lattafa Khamrah Qahwa bottle and box — clean packshot'}], price:37, originalPrice:46, featured:19 },
+        { name:'Lattafa Yara Candy Perfume for Women', niche:'Lattafa · Women · 3.4 oz EDP', direction:'Juicy berries, vanilla and caramel', description:'A playful burst of juicy berries settles into creamy vanilla and soft caramel sweetness. Bright, cheerful and easy to wear when you want something fun.', category:'sweet', images:[{src:'assets/product-lattafa-yara-candy.jpg', alt:'Lattafa Yara Candy bottle and pink box — clean packshot'},{src:'assets/gallery-lattafa-yara-candy-1.jpg', alt:'Lattafa Yara Candy Perfume for Women — customer photo 1'},{src:'assets/gallery-lattafa-yara-candy-2.jpg', alt:'Lattafa Yara Candy Perfume for Women — customer photo 2'},{src:'assets/gallery-lattafa-yara-candy-3.jpg', alt:'Lattafa Yara Candy Perfume for Women — customer photo 3'}], price:29, originalPrice:34, featured:20 },
+        { name:'Dolce & Gabbana Light Blue Cologne for Men', niche:'Dolce & Gabbana · Men · 4.2 oz EDT', direction:'Crisp citrus, aromatic herbs and clean woods', description:'A bright Mediterranean-style blend of citrus and fresh aromatics settles into a clean, lightly woody base. Easygoing and refreshing for warm days.', category:'fresh', images:[{src:'assets/product-dolce-gabbana-light-blue.jpg', alt:'Dolce & Gabbana Light Blue bottle and box — clean packshot'}], price:68, originalPrice:80, featured:21 },
+        { name:'Rasasi Hawas Ice Cologne for Men', niche:'Rasasi · Men · 3.38 oz EDP', direction:'Icy citrus, fruit and amber woods', description:'Cool citrus and juicy fruit create an energetic opening, followed by aromatic warmth and smooth amber woods. Fresh, modern and made to project.', category:'fresh', images:[{src:'assets/product-rasasi-hawas-ice.jpg', alt:'Rasasi Hawas Ice blue bottle and box — clean packshot'}], price:55, originalPrice:68, featured:22 },
+        { name:'Yves Saint Laurent Myslf Cologne for Men', niche:'Yves Saint Laurent · Men · 3.4 oz EDP', direction:'Bright citrus, orange blossom and woods', description:'Sparkling citrus meets a clean orange-blossom heart and a warm woody finish. Polished and versatile, with a contemporary dressed-up feel.', category:'fresh', images:[{src:'assets/product-ysl-myslf.jpg', alt:'Yves Saint Laurent Myslf black bottle and box — clean packshot'},{src:'assets/gallery-ysl-myslf-1.jpg', alt:'Yves Saint Laurent Myslf Cologne for Men — customer photo 1'},{src:'assets/gallery-ysl-myslf-2.jpg', alt:'Yves Saint Laurent Myslf Cologne for Men — customer photo 2'},{src:'assets/gallery-ysl-myslf-3.jpg', alt:'Yves Saint Laurent Myslf Cologne for Men — customer photo 3'}], price:125, originalPrice:145, featured:23 },
+        { name:'Versace Eros Flame Cologne for Men', niche:'Versace · Men · 3.4 oz EDP', direction:'Spiced citrus, herbs and vanilla woods', description:'Vibrant citrus and pepper lead into aromatic herbs, warm woods and vanilla. Fiery and confident, with a bold evening-ready trail.', category:'amber', images:[{src:'assets/product-versace-eros-flame.jpg', alt:'Versace Eros Flame red bottle and box — clean packshot'},{src:'assets/gallery-versace-eros-flame-1.jpg', alt:'Versace Eros Flame Cologne for Men — customer photo 1'},{src:'assets/gallery-versace-eros-flame-2.jpg', alt:'Versace Eros Flame Cologne for Men — customer photo 2'},{src:'assets/gallery-versace-eros-flame-3.jpg', alt:'Versace Eros Flame Cologne for Men — customer photo 3'},{src:'assets/gallery-versace-eros-flame-4.jpg', alt:'Versace Eros Flame Cologne for Men — customer photo 4'}], price:79, originalPrice:95, featured:24 },
+        { name:'Lattafa His Confession Cologne for Men', niche:'Lattafa · Men · 3.4 oz EDP', direction:'Warm spice, iris and amber woods', description:'A smooth blend of warm spice and powdery iris deepens into amber, vanilla and woods. Rich and composed, with a softly mysterious finish.', category:'amber', images:[{src:'assets/product-lattafa-his-confession.jpg', alt:'Lattafa His Confession black and gold bottle and box — clean packshot'}], price:36, originalPrice:44, featured:25 },
+        { name:'Al Haramain Amber Oud Ruby Perfume for Women', niche:'Al Haramain · Women · 3.4 oz EDP', direction:'Saffron, amberwood and warm musk', description:'Radiant saffron and warm amberwood meet a smooth musky base. Bold and polished, with a rich sweetness that lingers.', category:'amber', images:[{src:'assets/product-al-haramain-amber-oud-ruby.jpg', alt:'Al Haramain Amber Oud Ruby bottle and box — clean packshot'}], price:59, originalPrice:72, featured:26 },
+        { name:'Yves Saint Laurent Libre Perfume for Women', niche:'Yves Saint Laurent · Women · 3.0 oz EDP', direction:'Lavender, orange blossom and vanilla', description:'Aromatic lavender contrasts with luminous orange blossom before settling into warm vanilla. Confident, elegant and distinctly modern.', category:'amber', images:[{src:'assets/product-ysl-libre.jpg', alt:'Yves Saint Laurent Libre bottle and box — clean packshot'},{src:'assets/gallery-ysl-libre-1.jpg', alt:'Yves Saint Laurent Libre Perfume for Women — customer photo 1'}], price:125, originalPrice:145, featured:27 },
+        { name:'Carolina Herrera Good Girl Perfume for Women', niche:'Carolina Herrera · Women · 2.7 oz EDP', direction:'White florals, cacao and tonka', description:'Lush white florals meet a darker base of cacao, tonka and warm woods. Glamorous and dramatic, with a sweet evening character.', category:'sweet', images:[{src:'assets/product-carolina-herrera-good-girl.jpg', alt:'Carolina Herrera Good Girl stiletto bottle and box — clean packshot'}], price:105, originalPrice:125, featured:28 },
+        { name:'Mont Blanc Explorer Cologne for Men (Tester)', niche:'Mont Blanc · Men · 3.3 oz EDP · Tester', direction:'Bergamot, aromatic woods and leather', description:'Tester version: the authentic 3.3 oz fragrance supplied in tester packaging rather than standard retail presentation. Fresh bergamot moves into aromatic woods and a smooth leather-toned base.', category:'woody', images:[{src:'assets/product-montblanc-explorer-tester.jpg', alt:'Mont Blanc Explorer tester bottle and tester box — clean packshot'},{src:'assets/gallery-montblanc-explorer-1.jpg', alt:'Mont Blanc Explorer Cologne for Men (Tester) — customer photo 1'},{src:'assets/gallery-montblanc-explorer-2.jpg', alt:'Mont Blanc Explorer Cologne for Men (Tester) — customer photo 2'},{src:'assets/gallery-montblanc-explorer-3.jpg', alt:'Mont Blanc Explorer Cologne for Men (Tester) — customer photo 3'}], price:49, originalPrice:62, featured:29 },
+        { name:'Afnan 9PM Night Out Perfume for Unisex', niche:'Afnan · Unisex · 3.4 oz Extrait de Parfum', direction:'Spiced fruit, warm amber and woods', description:'A concentrated mix of sweet fruit and spice settles into warm amber and dark woods. Rich, long-wearing and designed for an expressive night-out mood.', category:'sweet', images:[{src:'assets/product-afnan-9pm-night-out.jpg', alt:'Afnan 9PM Night Out bottle and black box — clean packshot'},{src:'assets/gallery-afnan-9pm-night-out-1.jpg', alt:'Afnan 9PM Night Out Perfume for Unisex — customer photo 1'},{src:'assets/gallery-afnan-9pm-night-out-2.jpg', alt:'Afnan 9PM Night Out Perfume for Unisex — customer photo 2'}], price:49, originalPrice:60, featured:30 },
+        { name:'Armaf Odyssey Homme White Edition Cologne for Men', niche:'Armaf · Men · 3.4 oz EDP', direction:'Fresh spice, vanilla and smooth woods', description:'A crisp aromatic opening is softened by warm spice, creamy vanilla and clean woods. Versatile and inviting with a smooth modern finish.', category:'fresh', images:[{src:'assets/product-armaf-odyssey-homme-white.jpg', alt:'Armaf Odyssey Homme White Edition bottle and box — clean packshot'}], price:29, originalPrice:36, featured:31 },
+        { name:'Ariana Grande Cloud Perfume for Women (Tester)', niche:'Ariana Grande · Women · 3.4 oz EDP · Tester', direction:'Lavender, coconut cream and soft musk', description:'Tester version: the authentic 3.4 oz fragrance supplied in tester packaging rather than standard retail presentation. Airy lavender and fruit float over coconut cream, vanilla and soft musk.', category:'sweet', images:[{src:'assets/product-ariana-grande-cloud-tester.jpg', alt:'Ariana Grande Cloud tester bottle and tester box — clean packshot'},{src:'assets/gallery-ariana-grande-cloud-1.jpg', alt:'Ariana Grande Cloud Perfume for Women (Tester) — customer photo 1'}], price:45, originalPrice:56, featured:32 },
+        { name:'Dior Sauvage Parfum Cologne for Men', niche:'Dior · Men · 3.4 oz Parfum', direction:'Citrus, spice and sandalwood', description:'A fresh citrus opening gains depth from smooth spice, resinous warmth and sandalwood. Refined and full-bodied, with a polished lasting trail.', category:'woody', images:[{src:'assets/product-dior-sauvage-parfum.jpg', alt:'Dior Sauvage Parfum dark blue bottle — clean packshot'}], price:165, originalPrice:180, featured:33 },
+        { name:'Jimmy Choo Perfume for Women', niche:'Jimmy Choo · Women · 3.3 oz EDP', direction:'Pear, orchid and sweet patchouli', description:'Juicy pear and a luminous floral heart settle into warm toffee-toned sweetness and patchouli. Glamorous and inviting without losing its elegance.', category:'sweet', images:[{src:'assets/product-jimmy-choo.jpg', alt:'Jimmy Choo perfume bottle and pink box — clean packshot'}], price:62, originalPrice:75, featured:34 },
+        { name:'French Avenue Vulcan Feu Perfume for Unisex', niche:'French Avenue · Unisex · 3.4 oz EDP', direction:'Tropical fruit, ginger and warm woods', description:'A vivid tropical-fruit opening meets bright ginger before settling into warm, smooth woods. Colorful and energetic with an easy unisex character.', category:'fresh', images:[{src:'assets/product-french-avenue-vulcan-feu.jpg', alt:'French Avenue Vulcan Feu turquoise bottle and box — clean packshot'},{src:'assets/gallery-french-avenue-vulcan-feu-1.jpg', alt:'French Avenue Vulcan Feu Perfume for Unisex — customer photo 1'},{src:'assets/gallery-french-avenue-vulcan-feu-3.jpg', alt:'French Avenue Vulcan Feu Perfume for Unisex — customer photo 2'}], price:39, originalPrice:50, featured:35 },
+        { name:'Emporio Armani Stronger With You Intensely Cologne for Men', niche:'Emporio Armani · Men · 3.3 oz EDP', direction:'Pink pepper, toffee and vanilla amber', description:'A spicy opening melts into sweet toffee, vanilla and warm amber woods. Dense, comforting and especially suited to cool-weather evenings.', category:'sweet', images:[{src:'assets/product-armani-stronger-with-you-intensely.jpg', alt:'Emporio Armani Stronger With You Intensely bottle and box — clean packshot'},{src:'assets/gallery-armani-stronger-with-you-intensely-1.jpg', alt:'Emporio Armani Stronger With You Intensely Cologne for Men — customer photo 1'}], price:99, originalPrice:120, featured:36 },
+        { name:'Versace Eros Cologne for Men (Tester)', niche:'Versace · Men · 3.4 oz EDT · Tester', direction:'Mint, green apple and vanilla woods', description:'Tester version: the authentic 3.4 oz fragrance supplied in tester packaging rather than standard retail presentation. Bright mint and apple lead into aromatic warmth, vanilla and smooth woods.', category:'fresh', images:[{src:'assets/product-versace-eros-tester.jpg', alt:'Versace Eros tester bottle and tester box — clean packshot'},{src:'assets/gallery-versace-eros-1.jpg', alt:'Versace Eros Cologne for Men (Tester) — customer photo 1'},{src:'assets/gallery-versace-eros-2.jpg', alt:'Versace Eros Cologne for Men (Tester) — customer photo 2'}], price:55, originalPrice:68, featured:37 },
+        { name:'Afnan Supremacy Collector\'s Edition Perfume for Unisex', niche:'Afnan · Unisex · 3.4 oz EDP', direction:'Bright fruit, saffron and smoky woods', description:'Vibrant fruit and saffron open with clarity before smoky woods and amber bring depth. Polished and assertive with a versatile unisex profile.', category:'woody', images:[{src:'assets/product-afnan-supremacy-collectors.jpg', alt:'Afnan Supremacy Collector’s Edition bottle and box — clean packshot'},{src:'assets/gallery-afnan-supremacy-collectors-edition-1.jpg', alt:'Afnan Supremacy Collector’s Edition Perfume for Unisex — customer photo 1'},{src:'assets/gallery-afnan-supremacy-collectors-edition-2.jpg', alt:'Afnan Supremacy Collector’s Edition Perfume for Unisex — customer photo 2'}], price:59, originalPrice:72, featured:38 },
+        { name:'Versace Dylan Blue Cologne for Men', niche:'Versace · Men · 3.4 oz EDT', direction:'Aquatic citrus, incense and dark musk', description:'Fresh aquatic citrus and aromatics are sharpened by incense, woods and dark musk. Clean and confident with enough depth for day or night.', category:'fresh', images:[{src:'assets/product-versace-dylan-blue.jpg', alt:'Versace Dylan Blue dark blue bottle — clean packshot'},{src:'assets/gallery-versace-dylan-blue-1.jpg', alt:'Versace Dylan Blue Cologne for Men — customer photo 1'},{src:'assets/gallery-versace-dylan-blue-2.jpg', alt:'Versace Dylan Blue Cologne for Men — customer photo 2'},{src:'assets/gallery-versace-dylan-blue-3.jpg', alt:'Versace Dylan Blue Cologne for Men — customer photo 3'},{src:'assets/gallery-versace-dylan-blue-4.jpg', alt:'Versace Dylan Blue Cologne for Men — customer photo 4'},{src:'assets/gallery-versace-dylan-blue-5.jpg', alt:'Versace Dylan Blue Cologne for Men — customer photo 5'}], price:68, originalPrice:82, featured:39 },
+        { name:'Coach Dreams Perfume for Women (Tester)', niche:'Coach · Women · 3.0 oz EDP · Tester', direction:'Pear, gardenia and warm woods', description:'Tester version: the authentic 3.0 oz fragrance supplied in tester packaging rather than standard retail presentation. Bright pear and gardenia rest on a warm, softly woody base.', category:'fresh', images:[{src:'assets/product-coach-dreams-tester.jpg', alt:'Coach Dreams tester bottle — clean packshot'}], price:47, originalPrice:58, featured:40 }
+      ];
+      var favoriteNames = {};
+      var productGrid = document.getElementById('productGrid');
+      var sortProducts = document.getElementById('sortProducts');
+      var categoryFilter = document.getElementById('categoryFilter');
+      var saleOnly = document.getElementById('saleOnly');
+      var resultCount = document.getElementById('resultCount');
+      var productDialog = document.getElementById('productDialog');
+      var dialogClose = document.getElementById('dialogClose');
+      var orderActions = document.getElementById('orderActions');
+      var orderButton = document.getElementById('orderButton');
+      var whatsappButton = document.getElementById('whatsappButton');
+      var cardPaymentButton = document.getElementById('cardPaymentButton');
+      var soldOutState = document.getElementById('soldOutState');
+      var instagramFallback = document.getElementById('instagramFallback');
+      var dialogGallery = document.getElementById('dialogGallery');
+      var galleryTrack = document.getElementById('galleryTrack');
+      var galleryDots = document.getElementById('galleryDots');
+      var galleryStatus = document.getElementById('galleryStatus');
+      var galleryPrev = document.getElementById('galleryPrev');
+      var galleryNext = document.getElementById('galleryNext');
+      var activeProduct = null;
+      var galleryIndex = 0;
+      var swipeStartX = null;
+      var lastDialogTrigger = null;
+
+      function money(value) { return '$' + value.toFixed(2); }
+      function orderMoney(value) { return '$' + (value % 1 ? value.toFixed(2) : value.toFixed(0)); }
+
+      function findProduct(name) {
+        return productsCatalog.find(function (product) { return product.name === name; });
+      }
+
+      function setGalleryIndex(nextIndex, announce) {
+        if (!activeProduct) return;
+        var images = activeProduct.images;
+        galleryIndex = (nextIndex + images.length) % images.length;
+        galleryTrack.style.transform = 'translateX(-' + (galleryIndex * 100) + '%)';
+        galleryTrack.querySelectorAll('.gallery-slide').forEach(function (slide, index) {
+          slide.setAttribute('aria-hidden', index === galleryIndex ? 'false' : 'true');
+        });
+        galleryDots.querySelectorAll('.gallery-dot').forEach(function (dot, index) {
+          dot.setAttribute('aria-current', index === galleryIndex ? 'true' : 'false');
+        });
+        if (announce) galleryStatus.textContent = 'Photo ' + (galleryIndex + 1) + ' of ' + images.length + ': ' + images[galleryIndex].alt;
+      }
+
+      function renderGallery(product) {
+        activeProduct = product;
+        galleryIndex = 0;
+        galleryTrack.innerHTML = product.images.map(function (image, index) {
+          return '<div class="gallery-slide" aria-hidden="' + (index ? 'true' : 'false') + '"><img src="' + image.src + '" alt="' + image.alt + '" draggable="false"></div>';
+        }).join('');
+        galleryDots.innerHTML = product.images.map(function (image, index) {
+          return '<button class="gallery-dot" type="button" data-gallery-index="' + index + '" aria-label="Show photo ' + (index + 1) + ' of ' + product.images.length + '" aria-current="' + (index ? 'false' : 'true') + '"></button>';
+        }).join('');
+        galleryStatus.textContent = 'Photo 1 of ' + product.images.length + ': ' + product.images[0].alt;
+        galleryTrack.style.transform = 'translateX(0)';
+        var multiple = product.images.length > 1;
+        galleryPrev.hidden = !multiple;
+        galleryNext.hidden = !multiple;
+        galleryDots.hidden = !multiple;
+      }
+
+      function openProductDialog(product, trigger) {
+        if (!product) return;
+        lastDialogTrigger = trigger;
+        renderGallery(product);
+        document.getElementById('dialogTag').textContent = 'New · ' + product.niche;
+        document.getElementById('dialogTitle').textContent = product.name;
+        document.getElementById('dialogDirection').textContent = product.direction;
+        document.getElementById('dialogDescription').textContent = product.description;
+        document.getElementById('dialogRating').innerHTML = '<span class="new-badge">New arrival</span>'; 
+        document.getElementById('dialogPrice').innerHTML = '<span class="sale-price">' + money(product.price) + '</span><span class="original-price">Compare ' + money(product.originalPrice) + '</span>';
+        orderButton.href = 'https://ig.me/m/boss1992alfred';
+        orderButton.setAttribute('aria-label', 'DM @boss1992alfred on Instagram to order ' + product.name);
+        whatsappButton.setAttribute('aria-label', 'Chat on WhatsApp to order ' + product.name);
+        cardPaymentButton.hidden = !product.paymentLink;
+        orderActions.classList.toggle('has-card-payment', Boolean(product.paymentLink));
+        if (product.paymentLink) {
+          cardPaymentButton.href = product.paymentLink;
+          cardPaymentButton.setAttribute('aria-label', 'Pay with card for ' + product.name);
+        }
+        productDialog.hidden = false;
+        document.body.classList.add('dialog-open');
+        dialogClose.focus();
+      }
+
+      function closeProductDialog() {
+        if (productDialog.hidden) return;
+        productDialog.hidden = true;
+        document.body.classList.remove('dialog-open');
+        if (lastDialogTrigger && document.body.contains(lastDialogTrigger)) lastDialogTrigger.focus();
+      }
+
+      var cartKey = 'sillage-cart-v1';
+      var cart = {};
+      try { cart = JSON.parse(localStorage.getItem(cartKey)) || {}; } catch (e) { cart = {}; }
+
+      var cartButton = document.getElementById('cartButton');
+      var cartCount = document.getElementById('cartCount');
+      var cartPanel = document.getElementById('cartPanel');
+      var cartBackdrop = document.getElementById('cartBackdrop');
+      var cartItems = document.getElementById('cartItems');
+      var cartFoot = document.getElementById('cartFoot');
+      var cartTotal = document.getElementById('cartTotal');
+      var cartCheckout = document.getElementById('cartCheckout');
+      var cartToast = document.getElementById('cartToast');
+      var toastTimer = null;
+
+      function saveCart() {
+        try { localStorage.setItem(cartKey, JSON.stringify(cart)); } catch (e) {}
+      }
+      function cartCountValue() {
+        return Object.keys(cart).reduce(function (n, name) { return n + cart[name]; }, 0);
+      }
+      function cartTotalValue() {
+        return Object.keys(cart).reduce(function (sum, name) {
+          var product = findProduct(name);
+          return sum + (product ? product.price * cart[name] : 0);
+        }, 0);
+      }
+      function updateCartBadge() {
+        var count = cartCountValue();
+        cartCount.textContent = count;
+        cartCount.hidden = count === 0;
+        cartButton.setAttribute('aria-label', 'Open shopping cart, ' + count + ' items');
+      }
+      function showToast(message) {
+        cartToast.textContent = message;
+        cartToast.classList.add('show');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () { cartToast.classList.remove('show'); }, 2200);
+      }
+      function addToCart(name) {
+        var product = findProduct(name);
+        if (!product) return;
+        cart[name] = (cart[name] || 0) + 1;
+        saveCart();
+        updateCartBadge();
+        showToast('Added to cart: ' + product.name);
+      }
+      function setQty(name, qty) {
+        if (qty <= 0) { delete cart[name]; }
+        else { cart[name] = qty; }
+        saveCart();
+        updateCartBadge();
+        renderCart();
+      }
+      function cartMessage() {
+        var lines = ['Hello Sillage Standard! I would like to order:', ''];
+        Object.keys(cart).forEach(function (name) {
+          var product = findProduct(name);
+          if (!product) return;
+          lines.push(cart[name] + ' x ' + name + ' — ' + orderMoney(product.price * cart[name]));
+        });
+        lines.push('');
+        lines.push('Total: ' + orderMoney(cartTotalValue()));
+        return lines.join('\n');
+      }
+      function renderCart() {
+        var names = Object.keys(cart);
+        if (!names.length) {
+          cartItems.innerHTML = '<p class="cart-empty">Your cart is empty.<br>Add a fragrance to get started.</p>';
+          cartFoot.hidden = true;
+          return;
+        }
+        cartItems.innerHTML = names.map(function (name) {
+          var product = findProduct(name);
+          if (!product) return '';
+          var qty = cart[name];
+          return '<div class="cart-item">' +
+            '<img src="' + product.images[0].src + '" alt="">' +
+            '<div class="cart-item-info"><strong>' + product.name + '</strong>' +
+            '<span class="cart-unit">' + orderMoney(product.price) + ' each</span></div>' +
+            '<div class="qty">' +
+              '<button type="button" data-dec="' + name + '" aria-label="Remove one ' + name + '">−</button>' +
+              '<span>' + qty + '</span>' +
+              '<button type="button" data-inc="' + name + '" aria-label="Add one more ' + name + '">+</button>' +
+            '</div>' +
+            '<div class="cart-line-total">' + orderMoney(product.price * qty) + '</div>' +
+          '</div>';
+        }).join('');
+        cartTotal.textContent = orderMoney(cartTotalValue());
+        cartCheckout.href = 'https://wa.me/15086236401?text=' + encodeURIComponent(cartMessage());
+        cartFoot.hidden = false;
+      }
+      function openCart() {
+        renderCart();
+        cartPanel.hidden = false;
+        cartBackdrop.hidden = false;
+        document.body.classList.add('dialog-open');
+        document.getElementById('cartClose').focus();
+      }
+      function closeCart() {
+        cartPanel.hidden = true;
+        cartBackdrop.hidden = true;
+        document.body.classList.remove('dialog-open');
+        cartButton.focus();
+      }
+      cartButton.addEventListener('click', openCart);
+      document.getElementById('cartClose').addEventListener('click', closeCart);
+      cartBackdrop.addEventListener('click', closeCart);
+      document.getElementById('dialogAddCart').addEventListener('click', function () {
+        if (activeProduct) addToCart(activeProduct.name);
+      });
+      cartItems.addEventListener('click', function (event) {
+        var inc = event.target.closest('[data-inc]');
+        var dec = event.target.closest('[data-dec]');
+        if (inc) setQty(inc.getAttribute('data-inc'), (cart[inc.getAttribute('data-inc')] || 0) + 1);
+        else if (dec) setQty(dec.getAttribute('data-dec'), (cart[dec.getAttribute('data-dec')] || 0) - 1);
+      });
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && !cartPanel.hidden) { event.preventDefault(); closeCart(); }
+      });
+      updateCartBadge();
+
+      function renderProducts() {
+        var category = categoryFilter.value;
+        var products = productsCatalog.filter(function (product) {
+          var categoryMatches = category === 'all' || product.category === category;
+          var saleMatches = !saleOnly.checked || product.originalPrice > product.price;
+          return categoryMatches && saleMatches;
+        }).slice();
+
+        products.sort(function (a, b) {
+          if (sortProducts.value === 'price-low') return a.price - b.price;
+          if (sortProducts.value === 'price-high') return b.price - a.price;
+          if (sortProducts.value === 'name') return a.name.localeCompare(b.name);
+          return a.featured - b.featured;
+        });
+
+        resultCount.textContent = products.length + (products.length === 1 ? ' new arrival' : ' new arrivals');
+        if (!products.length) {
+          productGrid.innerHTML = '<p class="empty-products">No new arrivals match those filters.</p>';
+          return;
+        }
+
+        productGrid.innerHTML = products.map(function (product) {
+          var discount = Math.round((1 - product.price / product.originalPrice) * 100);
+          var pressed = favoriteNames[product.name] ? 'true' : 'false';
+          return '<article class="product-card" role="button" tabindex="0" data-product="' + product.name + '" aria-label="View details for ' + product.name + '">' +
+            '<div class="product-photo">' +
+              '<img src="' + product.images[0].src + '" alt="' + product.images[0].alt + '">' +
+              '<span class="discount">-' + discount + '%</span>' +
+              '<button class="favorite" type="button" data-favorite="' + product.name + '" aria-label="Favorite ' + product.name + '" aria-pressed="' + pressed + '">' +
+                '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>' +
+              '</button>' +
+            '</div>' +
+            '<div class="product-info">' +
+              '<p class="product-tag">New · ' + product.niche + '</p>' +
+              '<p class="product-direction">' + product.direction + '</p>' +
+              '<h3 class="product-name">' + product.name + '</h3>' +
+              '<div class="rating"><span class="new-badge">New arrival</span></div>' +
+              '<div class="price-row"><span class="sale-price">' + money(product.price) + '</span><span class="original-price">Compare ' + money(product.originalPrice) + '</span></div>' +
+              '<button class="add-cart-btn" type="button" data-addcart="' + product.name + '" aria-label="Add ' + product.name + ' to cart">Add to Cart</button>' +
+            '</div>' +
+          '</article>';
+        }).join('');
+      }
+
+      [sortProducts, categoryFilter, saleOnly].forEach(function (control) {
+        control.addEventListener('change', renderProducts);
+      });
+
+      document.getElementById('clearFilters').addEventListener('click', function () {
+        sortProducts.value = 'featured';
+        categoryFilter.value = 'all';
+        saleOnly.checked = false;
+        renderProducts();
+      });
+
+      productGrid.addEventListener('click', function (event) {
+        var addCartButton = event.target.closest('[data-addcart]');
+        if (addCartButton) {
+          event.stopPropagation();
+          addToCart(addCartButton.getAttribute('data-addcart'));
+          return;
+        }
+        var favoriteButton = event.target.closest('[data-favorite]');
+        if (favoriteButton) {
+          event.stopPropagation();
+          var favoriteName = favoriteButton.getAttribute('data-favorite');
+          favoriteNames[favoriteName] = favoriteButton.getAttribute('aria-pressed') !== 'true';
+          favoriteButton.setAttribute('aria-pressed', favoriteNames[favoriteName] ? 'true' : 'false');
+          return;
+        }
+        var card = event.target.closest('[data-product]');
+        if (card) openProductDialog(findProduct(card.getAttribute('data-product')), card);
+      });
+
+      productGrid.addEventListener('keydown', function (event) {
+        var card = event.target.closest('[data-product]');
+        if (!card || event.target !== card || (event.key !== 'Enter' && event.key !== ' ')) return;
+        event.preventDefault();
+        openProductDialog(findProduct(card.getAttribute('data-product')), card);
+      });
+
+      dialogClose.addEventListener('click', closeProductDialog);
+      productDialog.addEventListener('click', function (event) {
+        if (event.target.hasAttribute('data-dialog-close')) closeProductDialog();
+      });
+      galleryPrev.addEventListener('click', function () { setGalleryIndex(galleryIndex - 1, true); });
+      galleryNext.addEventListener('click', function () { setGalleryIndex(galleryIndex + 1, true); });
+      galleryDots.addEventListener('click', function (event) {
+        var dot = event.target.closest('[data-gallery-index]');
+        if (dot) setGalleryIndex(Number(dot.getAttribute('data-gallery-index')), true);
+      });
+      dialogGallery.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          setGalleryIndex(galleryIndex - 1, true);
+        } else if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          setGalleryIndex(galleryIndex + 1, true);
+        }
+      });
+      dialogGallery.addEventListener('touchstart', function (event) {
+        swipeStartX = event.changedTouches[0].clientX;
+      }, { passive:true });
+      dialogGallery.addEventListener('touchend', function (event) {
+        if (swipeStartX === null) return;
+        var distance = event.changedTouches[0].clientX - swipeStartX;
+        swipeStartX = null;
+        if (Math.abs(distance) < 42) return;
+        setGalleryIndex(galleryIndex + (distance < 0 ? 1 : -1), true);
+      }, { passive:true });
+      document.addEventListener('keydown', function (event) {
+        if (productDialog.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault();
+          closeProductDialog();
+          return;
+        }
+        if (event.key === 'Tab') {
+          var focusable = Array.prototype.slice.call(productDialog.querySelectorAll('button:not([hidden]), a[href]'));
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+      });
+
+      renderProducts();
+
+      document.querySelectorAll('.choice').forEach(function (button) {
+        button.addEventListener('click', function () {
+          scores[button.getAttribute('data-score')] += 1;
+          questions[step].classList.remove('active');
+          step += 1;
+          if (step < questions.length) {
+            questions[step].classList.add('active');
+            bars[step].classList.add('active');
+          } else {
+            showResult();
+          }
+        });
+      });
+
+      function showResult() {
+        var order = ['smoke', 'amber', 'fresh', 'velvet'];
+        var winner = order.reduce(function (best, key) { return scores[key] > scores[best] ? key : best; }, order[0]);
+        currentProfile = profiles[winner];
+        document.querySelector('.progress').style.display = 'none';
+        document.getElementById('resultName').textContent = currentProfile.name;
+        document.getElementById('resultDescription').textContent = currentProfile.description;
+        document.getElementById('resultNotes').innerHTML =
+          '<div class="note-row"><span>Opening</span><strong>' + currentProfile.top + '</strong></div>' +
+          '<div class="note-row"><span>Heart</span><strong>' + currentProfile.heart + '</strong></div>' +
+          '<div class="note-row"><span>Foundation</span><strong>' + currentProfile.base + '</strong></div>';
+        result.classList.add('show');
+      }
+
+      document.getElementById('restartBtn').addEventListener('click', function () {
+        scores = { smoke: 0, amber: 0, fresh: 0, velvet: 0 };
+        step = 0;
+        currentProfile = null;
+        result.classList.remove('show');
+        document.querySelector('.progress').style.display = 'flex';
+        bars.forEach(function (bar, index) { bar.classList.toggle('active', index === 0); });
+        questions.forEach(function (question, index) { question.classList.toggle('active', index === 0); });
+      });
+
+      document.getElementById('downloadBtn').addEventListener('click', function () {
+        if (!currentProfile) return;
+        var text = 'MY SILLAGE STANDARD SCENT BRIEF\n\nDirection: ' + currentProfile.name + '\n\n' + currentProfile.description + '\n\nOpening: ' + currentProfile.top + '\nHeart: ' + currentProfile.heart + '\nFoundation: ' + currentProfile.base + '\n\nUse this brief as a guide when exploring the collection.';
+        var blob = new Blob([text], { type: 'text/plain' });
+        var url = URL.createObjectURL(blob);
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = 'my-scent-brief.txt';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+      });
+    }());
+  </script>
+</body>
+</html>
