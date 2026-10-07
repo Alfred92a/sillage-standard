@@ -200,17 +200,6 @@
     .availability-note { margin:28px 0 0; padding:18px 0; border-block:1px solid var(--line); }
     .availability-note strong { display:block; margin-bottom:3px; }
     .availability-note p { margin:0; color:var(--muted); font-size:14px; }
-    .order-button {
-      width:100%;
-      margin-top:16px;
-      min-height:58px;
-      justify-content:flex-start;
-      padding:12px 18px;
-      background:linear-gradient(118deg, #6f2a78 0%, #a52b45 48%, #cf5b2e 100%);
-      box-shadow:0 10px 28px rgba(115,32,66,.22);
-    }
-    .order-button:hover { filter:brightness(1.08); }
-    .order-button svg { width:25px; height:25px; flex:0 0 auto; }
     .order-button-copy { display:flex; flex-direction:column; align-items:flex-start; line-height:1.2; }
     .order-button-copy strong { font-size:15px; }
     .order-button-copy small { margin-top:3px; font-size:11px; font-weight:600; opacity:.86; }
@@ -378,8 +367,6 @@
     .cart-empty { padding: 40px 0; color: var(--muted); text-align: center; }
     .cart-foot { padding: 18px 22px 22px; border-top: 1px solid var(--line); }
     .cart-total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
-    .cart-checkout { width: 100%; }
-    .cart-note { margin-top: 10px; font-size: 12px; color: var(--muted); text-align: center; }
     .add-cart-btn {
       appearance: none; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
       margin-top: 13px; min-height: 46px; padding: 10px 14px;
@@ -428,6 +415,7 @@
       <a href="#shop">Shop all</a>
       <a href="#profile">Scent profile</a>
       <a href="#drop">First drop</a>
+      <a href="#contact">Contact</a>
       <button class="cart-button" type="button" id="cartButton" aria-label="Open shopping cart">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 8h15l-1.5 9h-12z"></path><path d="M6 8l-1-4H2.5"></path><circle cx="9.5" cy="20" r="1.4"></circle><circle cx="17.5" cy="20" r="1.4"></circle></svg>
         <span class="cart-label">Cart</span>
@@ -579,6 +567,17 @@
           <a href="#profile">Build or revisit your profile →</a>
         </div>
       </div>
+    <section class="drop" id="contact">
+      <div class="wrap drop-box">
+        <div>
+          <p class="eyebrow">Contact</p>
+          <h2>Talk to a human.</h2>
+        </div>
+        <div class="drop-copy">
+          <p><strong>Sillage Standard</strong> is an independent fragrance reseller based in Massachusetts, USA. Online only.</p>
+          <p>Questions about a fragrance or an order? Call or text <a href="tel:+15086236401">(508) 623-6401</a>, or message us on <a href="https://wa.me/15086236401" target="_blank" rel="noopener noreferrer">WhatsApp</a>.</p>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -603,7 +602,7 @@
         <div class="order-actions" id="orderActions">
           <button class="button dialog-add-cart" type="button" id="dialogAddCart">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 8h15l-1.5 9h-12z"></path><path d="M6 8l-1-4H2.5"></path><circle cx="9.5" cy="20" r="1.4"></circle><circle cx="17.5" cy="20" r="1.4"></circle></svg>
-            <span class="order-button-copy"><strong>Add to Cart</strong><small>Keep shopping, check out once</small></span>
+            <span class="order-button-copy"><strong>Add to Cart</strong><small>Add to your shopping list</small></span>
           </button>
           <a class="button card-payment-button" id="cardPaymentButton" href="https://buy.stripe.com/dRmeVf4YFbEg4tQ8ODf7i00" target="_blank" rel="noopener noreferrer" hidden>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
