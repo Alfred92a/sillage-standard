@@ -373,6 +373,9 @@
     .qty { display: flex; align-items: center; gap: 10px; }
     .qty button { appearance: none; width: 28px; height: 28px; border: 1px solid var(--line); background: none; color: inherit; font-size: 16px; cursor: pointer; border-radius: 4px; }
     .cart-line-total { font-weight: 700; min-width: 64px; text-align: right; }
+    .cart-pay-btn { display: inline-block; margin-top: 7px; padding: 8px 14px; font-size: 13px; font-weight: 700; text-decoration: none; color: var(--paper); background: var(--ink); border: 1px solid var(--ink); border-radius: 6px; }
+    .cart-pay-btn:hover { filter: brightness(1.16); }
+    .cart-note { margin: 10px 0 0; font-size: 12.5px; opacity: .72; }
     .cart-empty { padding: 40px 0; color: var(--muted); text-align: center; }
     .cart-foot { padding: 18px 22px 22px; border-top: 1px solid var(--line); }
     .cart-total-row { display: flex; justify-content: space-between; font-size: 18px; font-weight: 700; margin-bottom: 14px; }
@@ -660,6 +663,7 @@
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-foot" id="cartFoot" hidden>
       <div class="cart-total-row"><span>Total</span><span id="cartTotal"></span></div>
+      <p class="cart-note">Pay for each item separately — every Pay button opens secure Stripe checkout for that fragrance.</p>
     </div>
   </aside>
   <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
@@ -912,10 +916,12 @@
           if (!product) return '';
           var qty = cart[key];
           var unit = sizePrice(product, parts.size);
+          var payLink = parts.size === '10ml' ? product.decantPaymentLink : product.paymentLink;
           return '<div class="cart-item">' +
             '<img src="' + product.images[0].src + '" alt="">' +
             '<div class="cart-item-info"><strong>' + product.name + '</strong>' +
-            '<span class="cart-unit">' + sizeLabel(parts.size) + ' · ' + orderMoney(unit) + ' each</span></div>' +
+            '<span class="cart-unit">' + sizeLabel(parts.size) + ' · ' + orderMoney(unit) + ' each</span>' +
+            (payLink ? '<br><a class="cart-pay-btn" href="' + payLink + '" target="_blank" rel="noopener noreferrer">Pay with Card</a>' : '') + '</div>' +
             '<div class="qty">' +
               '<button type="button" data-dec="' + key + '" aria-label="Remove one ' + parts.name + '">−</button>' +
               '<span>' + qty + '</span>' +
