@@ -248,6 +248,9 @@
     .choice small { color:var(--muted); font-size:13px; }
     .result { display:none; }
     .result.show { display:block; }
+    .quiz-recs { margin:28px 0 8px; }
+    .quiz-recs h4 { font-size:15px; letter-spacing:.08em; text-transform:uppercase; margin:0 0 16px; }
+    .quiz-recs .rec-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:28px 16px; }
     .result-name { font-family:"Bodoni Moda", serif; font-size:clamp(42px,6vw,70px); line-height:1; color:var(--accent); margin:10px 0 20px; }
     .result p { color:var(--muted); }
     .result .notes { margin: 26px 0 32px; padding:20px 0; border-block:1px solid var(--line); }
@@ -547,6 +550,7 @@
             <div class="result-name" id="resultName"></div>
             <p id="resultDescription"></p>
             <div class="notes" id="resultNotes"></div>
+            <div class="quiz-recs" id="quizRecs" aria-live="polite"></div>
             <div class="result-actions">
               <button class="button" id="downloadBtn">Download my scent brief</button>
               <button class="button secondary" id="restartBtn">Start over</button>
@@ -901,6 +905,28 @@
       });
       updateCartBadge();
 
+      function productCardHTML(product) {
+        var discount = Math.round((1 - product.price / product.originalPrice) * 100);
+        var pressed = favoriteNames[product.name] ? 'true' : 'false';
+        return '<article class="product-card" role="button" tabindex="0" data-product="' + product.name + '" aria-label="View details for ' + product.name + '">' +
+          '<div class="product-photo">' +
+            '<img src="' + product.images[0].src + '" alt="' + product.images[0].alt + '">' +
+            '<span class="discount">-' + discount + '%</span>' +
+            '<button class="favorite" type="button" data-favorite="' + product.name + '" aria-label="Favorite ' + product.name + '" aria-pressed="' + pressed + '">' +
+              '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>' +
+            '</button>' +
+          '</div>' +
+          '<div class="product-info">' +
+            '<p class="product-tag">New · ' + product.niche + '</p>' +
+            '<p class="product-direction">' + product.direction + '</p>' +
+            '<h3 class="product-name">' + product.name + '</h3>' +
+            '<div class="rating"><span class="new-badge">New arrival</span></div>' +
+            '<div class="price-row"><span class="sale-price">' + money(product.price) + '</span><span class="original-price">Compare ' + money(product.originalPrice) + '</span></div>' +
+            '<button class="add-cart-btn" type="button" data-addcart="' + product.name + '" aria-label="Add ' + product.name + ' to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 8h15l-1.5 9h-12z"></path><path d="M6 8l-1-4H2.5"></path><circle cx="9.5" cy="20" r="1.4"></circle><circle cx="17.5" cy="20" r="1.4"></circle></svg>Add to Cart</button>' +
+          '</div>' +
+        '</article>';
+      }
+
       function renderProducts() {
         var category = categoryFilter.value;
         var products = productsCatalog.filter(function (product) {
@@ -922,27 +948,7 @@
           return;
         }
 
-        productGrid.innerHTML = products.map(function (product) {
-          var discount = Math.round((1 - product.price / product.originalPrice) * 100);
-          var pressed = favoriteNames[product.name] ? 'true' : 'false';
-          return '<article class="product-card" role="button" tabindex="0" data-product="' + product.name + '" aria-label="View details for ' + product.name + '">' +
-            '<div class="product-photo">' +
-              '<img src="' + product.images[0].src + '" alt="' + product.images[0].alt + '">' +
-              '<span class="discount">-' + discount + '%</span>' +
-              '<button class="favorite" type="button" data-favorite="' + product.name + '" aria-label="Favorite ' + product.name + '" aria-pressed="' + pressed + '">' +
-                '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>' +
-              '</button>' +
-            '</div>' +
-            '<div class="product-info">' +
-              '<p class="product-tag">New · ' + product.niche + '</p>' +
-              '<p class="product-direction">' + product.direction + '</p>' +
-              '<h3 class="product-name">' + product.name + '</h3>' +
-              '<div class="rating"><span class="new-badge">New arrival</span></div>' +
-              '<div class="price-row"><span class="sale-price">' + money(product.price) + '</span><span class="original-price">Compare ' + money(product.originalPrice) + '</span></div>' +
-              '<button class="add-cart-btn" type="button" data-addcart="' + product.name + '" aria-label="Add ' + product.name + ' to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 8h15l-1.5 9h-12z"></path><path d="M6 8l-1-4H2.5"></path><circle cx="9.5" cy="20" r="1.4"></circle><circle cx="17.5" cy="20" r="1.4"></circle></svg>Add to Cart</button>' +
-            '</div>' +
-          '</article>';
-        }).join('');
+        productGrid.innerHTML = products.map(productCardHTML).join('');
       }
 
       [sortProducts, categoryFilter, saleOnly].forEach(function (control) {
@@ -976,6 +982,32 @@
       });
 
       productGrid.addEventListener('keydown', function (event) {
+        var card = event.target.closest('[data-product]');
+        if (!card || event.target !== card || (event.key !== 'Enter' && event.key !== ' ')) return;
+        event.preventDefault();
+        openProductDialog(findProduct(card.getAttribute('data-product')), card);
+      });
+
+      function handleRecCardClick(event) {
+        var addCartButton = event.target.closest('[data-addcart]');
+        if (addCartButton) {
+          event.stopPropagation();
+          addToCart(addCartButton.getAttribute('data-addcart'));
+          return;
+        }
+        var favoriteButton = event.target.closest('[data-favorite]');
+        if (favoriteButton) {
+          event.stopPropagation();
+          var favoriteName = favoriteButton.getAttribute('data-favorite');
+          favoriteNames[favoriteName] = favoriteButton.getAttribute('aria-pressed') !== 'true';
+          favoriteButton.setAttribute('aria-pressed', favoriteNames[favoriteName] ? 'true' : 'false');
+          return;
+        }
+        var card = event.target.closest('[data-product]');
+        if (card) openProductDialog(findProduct(card.getAttribute('data-product')), card);
+      }
+      quizRecs.addEventListener('click', handleRecCardClick);
+      quizRecs.addEventListener('keydown', function (event) {
         var card = event.target.closest('[data-product]');
         if (!card || event.target !== card || (event.key !== 'Enter' && event.key !== ' ')) return;
         event.preventDefault();
@@ -1048,6 +1080,19 @@
         });
       });
 
+      var quizRecs = document.getElementById('quizRecs');
+      var profileCategory = { smoke: 'woody', amber: 'amber', fresh: 'fresh', velvet: 'sweet' };
+
+      function renderQuizRecs(profileKey) {
+        var matches = productsCatalog
+          .filter(function (product) { return product.category === profileCategory[profileKey]; })
+          .sort(function (a, b) { return a.featured - b.featured; })
+          .slice(0, 4);
+        if (!matches.length) { quizRecs.innerHTML = ''; return; }
+        quizRecs.innerHTML = '<h4>Matched to your direction</h4><div class="rec-grid">' +
+          matches.map(productCardHTML).join('') + '</div>';
+      }
+
       function showResult() {
         var order = ['smoke', 'amber', 'fresh', 'velvet'];
         var winner = order.reduce(function (best, key) { return scores[key] > scores[best] ? key : best; }, order[0]);
@@ -1059,6 +1104,7 @@
           '<div class="note-row"><span>Opening</span><strong>' + currentProfile.top + '</strong></div>' +
           '<div class="note-row"><span>Heart</span><strong>' + currentProfile.heart + '</strong></div>' +
           '<div class="note-row"><span>Foundation</span><strong>' + currentProfile.base + '</strong></div>';
+        renderQuizRecs(winner);
         result.classList.add('show');
       }
 
@@ -1066,6 +1112,7 @@
         scores = { smoke: 0, amber: 0, fresh: 0, velvet: 0 };
         step = 0;
         currentProfile = null;
+        quizRecs.innerHTML = '';
         result.classList.remove('show');
         document.querySelector('.progress').style.display = 'flex';
         bars.forEach(function (bar, index) { bar.classList.toggle('active', index === 0); });
