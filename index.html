@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Sillage Standard build 2026-10-07c: cache-bust after www edge incident -->
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -988,6 +989,9 @@
         openProductDialog(findProduct(card.getAttribute('data-product')), card);
       });
 
+      var quizRecs = document.getElementById('quizRecs');
+      var profileCategory = { smoke: 'woody', amber: 'amber', fresh: 'fresh', velvet: 'sweet' };
+
       function handleRecCardClick(event) {
         var addCartButton = event.target.closest('[data-addcart]');
         if (addCartButton) {
@@ -1079,9 +1083,6 @@
           }
         });
       });
-
-      var quizRecs = document.getElementById('quizRecs');
-      var profileCategory = { smoke: 'woody', amber: 'amber', fresh: 'fresh', velvet: 'sweet' };
 
       function renderQuizRecs(profileKey) {
         var matches = productsCatalog
