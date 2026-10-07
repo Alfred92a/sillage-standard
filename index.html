@@ -808,7 +808,7 @@
         if (dialogSize === '10ml') {
           document.getElementById('dialogPrice').innerHTML = '<span class="sale-price">' + money(unit) + '</span>';
         } else {
-          document.getElementById('dialogPrice').innerHTML = '<span class="sale-price">' + money(product.price) + '</span><span class="original-price">Compare ' + money(product.originalPrice) + '</span>';
+          document.getElementById('dialogPrice').innerHTML = '<span class="sale-price">' + money(product.price) + '</span>' + (product.originalPrice ? '<span class="original-price">Compare ' + money(product.originalPrice) + '</span>' : '');
         }
         var link = dialogSize === '10ml' ? product.decantPaymentLink : product.paymentLink;
         cardPaymentButton.hidden = !link;
@@ -958,12 +958,12 @@
       updateCartBadge();
 
       function productCardHTML(product) {
-        var discount = Math.round((1 - product.price / product.originalPrice) * 100);
+        var discount = product.originalPrice ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
         var pressed = favoriteNames[product.name] ? 'true' : 'false';
         return '<article class="product-card" role="button" tabindex="0" data-product="' + product.name + '" aria-label="View details for ' + product.name + '">' +
           '<div class="product-photo">' +
             '<img src="' + product.images[0].src + '" alt="' + product.images[0].alt + '">' +
-            '<span class="discount">-' + discount + '%</span>' +
+            (product.originalPrice ? '<span class="discount">-' + discount + '%</span>' : '') +
             '<button class="favorite" type="button" data-favorite="' + product.name + '" aria-label="Favorite ' + product.name + '" aria-pressed="' + pressed + '">' +
               '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>' +
             '</button>' +
@@ -973,7 +973,7 @@
             '<p class="product-direction">' + product.direction + '</p>' +
             '<h3 class="product-name">' + product.name + '</h3>' +
             '<div class="rating"><span class="new-badge">New arrival</span></div>' +
-            '<div class="price-row"><span class="sale-price">' + money(product.price) + '</span><span class="original-price">Compare ' + money(product.originalPrice) + '</span></div>' +
+            '<div class="price-row"><span class="sale-price">' + money(product.price) + '</span>' + (product.originalPrice ? '<span class="original-price">Compare ' + money(product.originalPrice) + '</span>' : '') + '</div>' +
             (product.decantPrice ? '<p class="decant-hint">10ml decant · ' + money(product.decantPrice) + '</p>' : '') +
             '<button class="add-cart-btn" type="button" data-addcart="' + product.name + '" aria-label="Add ' + product.name + ' to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 8h15l-1.5 9h-12z"></path><path d="M6 8l-1-4H2.5"></path><circle cx="9.5" cy="20" r="1.4"></circle><circle cx="17.5" cy="20" r="1.4"></circle></svg>Add to Cart</button>' +
           '</div>' +
