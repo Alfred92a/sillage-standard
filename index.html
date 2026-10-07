@@ -652,8 +652,6 @@
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-foot" id="cartFoot" hidden>
       <div class="cart-total-row"><span>Total</span><span id="cartTotal"></span></div>
-      <a class="button cart-checkout" id="cartCheckout" href="https://wa.me/15086236401" target="_blank" rel="noopener noreferrer">Order via WhatsApp</a>
-      <p class="cart-note">Checkout opens WhatsApp with your order ready to send.</p>
     </div>
   </aside>
   <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
@@ -813,7 +811,6 @@
       var cartItems = document.getElementById('cartItems');
       var cartFoot = document.getElementById('cartFoot');
       var cartTotal = document.getElementById('cartTotal');
-      var cartCheckout = document.getElementById('cartCheckout');
       var cartToast = document.getElementById('cartToast');
       var toastTimer = null;
 
@@ -851,17 +848,6 @@
         updateCartBadge();
         renderCart();
       }
-      function cartMessage() {
-        var lines = ['Hello Sillage Standard! I would like to order:', ''];
-        Object.keys(cart).forEach(function (name) {
-          var product = findProduct(name);
-          if (!product) return;
-          lines.push(cart[name] + ' x ' + name + ' — ' + orderMoney(product.price * cart[name]));
-        });
-        lines.push('');
-        lines.push('Total: ' + orderMoney(cartTotalValue()));
-        return lines.join('\n');
-      }
       function renderCart() {
         var names = Object.keys(cart);
         if (!names.length) {
@@ -886,7 +872,6 @@
           '</div>';
         }).join('');
         cartTotal.textContent = orderMoney(cartTotalValue());
-        cartCheckout.href = 'https://wa.me/15086236401?text=' + encodeURIComponent(cartMessage());
         cartFoot.hidden = false;
       }
       function openCart() {
