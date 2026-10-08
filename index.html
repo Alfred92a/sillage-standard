@@ -373,8 +373,10 @@
     .qty { display: flex; align-items: center; gap: 10px; }
     .qty button { appearance: none; width: 28px; height: 28px; border: 1px solid var(--line); background: none; color: inherit; font-size: 16px; cursor: pointer; border-radius: 4px; }
     .cart-line-total { font-weight: 700; min-width: 64px; text-align: right; }
-    .cart-pay-btn { display: inline-block; margin-top: 7px; padding: 8px 14px; font-size: 13px; font-weight: 700; text-decoration: none; color: var(--paper); background: var(--ink); border: 1px solid var(--ink); border-radius: 6px; }
-    .cart-pay-btn:hover { filter: brightness(1.16); }
+    .cart-checkout-btn { display: block; width: 100%; margin-top: 10px; padding: 13px 16px; font-size: 15px; font-weight: 700; color: var(--paper); background: var(--ink); border: 1px solid var(--ink); border-radius: 8px; cursor: pointer; }
+    .cart-checkout-btn:hover { filter: brightness(1.16); }
+    .cart-checkout-btn:disabled { opacity: .55; cursor: wait; }
+    .cart-error { color: #b3261e; font-size: 13px; margin: 8px 0 0; }
     .cart-note { margin: 10px 0 0; font-size: 12.5px; opacity: .72; }
     .cart-empty { padding: 40px 0; color: var(--muted); text-align: center; }
     .cart-foot { padding: 18px 22px 22px; border-top: 1px solid var(--line); }
@@ -663,7 +665,9 @@
     <div class="cart-items" id="cartItems"></div>
     <div class="cart-foot" id="cartFoot" hidden>
       <div class="cart-total-row"><span>Total</span><span id="cartTotal"></span></div>
-      <p class="cart-note">Pay for each item separately — every Pay button opens secure Stripe checkout for that fragrance.</p>
+      <button class="cart-checkout-btn" type="button" id="cartCheckout">Continue to checkout</button>
+      <p class="cart-error" id="cartCheckoutError" hidden></p>
+      <p class="cart-note">One secure Stripe checkout for everything in your cart.</p>
     </div>
   </aside>
   <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
@@ -916,12 +920,10 @@
           if (!product) return '';
           var qty = cart[key];
           var unit = sizePrice(product, parts.size);
-          var payLink = parts.size === '10ml' ? product.decantPaymentLink : product.paymentLink;
           return '<div class="cart-item">' +
             '<img src="' + product.images[0].src + '" alt="">' +
             '<div class="cart-item-info"><strong>' + product.name + '</strong>' +
-            '<span class="cart-unit">' + sizeLabel(parts.size) + ' · ' + orderMoney(unit) + ' each</span>' +
-            (payLink ? '<br><a class="cart-pay-btn" href="' + payLink + '" target="_blank" rel="noopener noreferrer">Pay with Card</a>' : '') + '</div>' +
+            '<span class="cart-unit">' + sizeLabel(parts.size) + ' · ' + orderMoney(unit) + ' each</span></div>' +
             '<div class="qty">' +
               '<button type="button" data-dec="' + key + '" aria-label="Remove one ' + parts.name + '">−</button>' +
               '<span>' + qty + '</span>' +
@@ -958,6 +960,47 @@
         if (inc) setQty(inc.getAttribute('data-inc'), (cart[inc.getAttribute('data-inc')] || 0) + 1);
         else if (dec) setQty(dec.getAttribute('data-dec'), (cart[dec.getAttribute('data-dec')] || 0) - 1);
       });
+      var CHECKOUT_WORKER_URL = 'https://summer-wind-ec68.stevensonalfred1992.workers.dev';
+      var cartCheckoutBtn = document.getElementById('cartCheckout');
+      var cartCheckoutError = document.getElementById('cartCheckoutError');
+      cartCheckoutBtn.addEventListener('click', function () {
+        var keys = Object.keys(cart);
+        if (!keys.length) return;
+        var items = keys.map(function (key) {
+          var parts = parseCartKey(key);
+          return { name: parts.name, size: parts.size, qty: cart[key] };
+        });
+        cartCheckoutError.hidden = true;
+        cartCheckoutBtn.disabled = true;
+        cartCheckoutBtn.textContent = 'Redirecting to secure checkout…';
+        fetch(CHECKOUT_WORKER_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items: items })
+        }).then(function (response) {
+          return response.json().then(function (data) { return { ok: response.ok, data: data }; });
+        }).then(function (result) {
+          if (result.ok && result.data && result.data.url) {
+            window.location.href = result.data.url;
+            return;
+          }
+          throw new Error('checkout failed');
+        }).catch(function () {
+          cartCheckoutError.textContent = 'Checkout could not start. Please try again.';
+          cartCheckoutError.hidden = false;
+          cartCheckoutBtn.disabled = false;
+          cartCheckoutBtn.textContent = 'Continue to checkout';
+        });
+      });
+      if (/(?:\?|&)paid=1(?:&|$)/.test(window.location.search)) {
+        cart = {};
+        updateCartBadge();
+        renderCart();
+        showToast('Payment successful — thank you for shopping Sillage Standard!');
+        if (window.history && window.history.replaceState) {
+          window.history.replaceState(null, '', window.location.pathname);
+        }
+      }
       document.addEventListener('keydown', function (event) {
         if (event.key === 'Escape' && !cartPanel.hidden) { event.preventDefault(); closeCart(); }
       });
