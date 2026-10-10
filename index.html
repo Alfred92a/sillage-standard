@@ -156,7 +156,9 @@
     .bottle.arch .bottle-body { border-radius:48% 48% 8px 8px / 30% 30% 8px 8px; }
     .bottle.tall { width:22%; height:72%; }
     .bottle-label { width:72%; min-height:36%; padding:8px 5px; display:grid; place-items:center; text-align:center; background:var(--label); color:var(--label-ink); border:1px solid rgba(0,0,0,.2); font-family:"Bodoni Moda", serif; font-size:clamp(11px,1.4vw,18px); line-height:1.02; letter-spacing:.04em; }
-    .discount { position:absolute; top:12px; left:12px; z-index:2; background:var(--accent); color:var(--accent-ink); padding:6px 9px; font-size:12px; font-weight:700; }
+    .discount, .sold-out-badge { position:absolute; top:12px; left:12px; z-index:2; padding:6px 9px; font-size:12px; font-weight:700; }
+    .discount { background:var(--accent); color:var(--accent-ink); }
+    .sold-out-badge { background:var(--ink); color:var(--paper); letter-spacing:.06em; text-transform:uppercase; }
     .favorite { position:absolute; top:10px; right:10px; z-index:2; width:40px; height:40px; padding:0; display:grid; place-items:center; border:1px solid rgba(33,24,20,.18); border-radius:50%; background:rgba(255,250,244,.9); color:#2b201b; cursor:pointer; }
     .favorite svg { width:19px; height:19px; fill:transparent; stroke:currentColor; stroke-width:1.8; }
     .favorite[aria-pressed="true"] { background:var(--accent); color:var(--accent-ink); border-color:var(--accent); }
@@ -291,7 +293,7 @@
       .product-photo { aspect-ratio:3/4; }
       .bottle { width:45%; min-width:0; height:60%; }
       .bottle.tall { width:36%; height:68%; }
-      .discount { top:8px; left:8px; padding:5px 7px; font-size:10px; }
+      .discount, .sold-out-badge { top:8px; left:8px; padding:5px 7px; font-size:10px; }
       .favorite { top:7px; right:7px; width:36px; height:36px; }
       .product-info { padding-top:11px; }
       .product-name { font-size:20px; }
@@ -388,6 +390,7 @@
       font-size: 13px; font-weight: 800; cursor: pointer; width: 100%;
     }
     .add-cart-btn:hover { filter: brightness(1.08); }
+    .add-cart-btn:disabled { background:var(--ink); border-color:var(--ink); color:var(--paper); cursor:not-allowed; filter:none; opacity:.72; }
     .add-cart-btn:focus-visible, .dialog-add-cart:focus-visible, .cart-close:focus-visible, .qty button:focus-visible { outline: 3px solid #e8a797; outline-offset: 3px; }
     .add-cart-btn svg { width: 17px; height: 17px; }
     .dialog-add-cart { grid-column: 1 / -1; min-height: 58px; margin-top: 16px; }
@@ -696,7 +699,7 @@
         { name:'Afnan 9PM Elixir Perfume for Unisex', niche:'Afnan · Unisex · 3.4 oz Parfum Intense', direction:'Aromatic spice and warm vanilla woods', description:'Deep spice and aromatic freshness lead into a rich, smooth base of vanilla-toned woods. A powerful unisex choice with a dressed-up evening feel.', category:'amber', images:[{src:'assets/product-afnan-9pm-elixir.jpg', alt:'Afnan 9PM Elixir bottle and box on a clean white background'},{src:'assets/gallery-afnan-9pm-elixir-1.jpg', alt:'Afnan 9PM Elixir bottle in a styled golden rock composition'},{src:'assets/gallery-afnan-9pm-elixir-2.jpg', alt:'Afnan 9PM Elixir bottle in warm dramatic light'}], price:44, decantPrice:11, originalPrice:55, featured:5, paymentLink:'https://buy.stripe.com/00w7sN1Mt5fSe4q0i7f7i16' },
         { name:'Bentley Intense Cologne for Men', niche:'Bentley · Men · 3.4 oz EDP', direction:'Rum, leather and smoky woods', description:'Warm rum and spice flow into leather, incense and dark woods. Rich, confident and best suited to cool weather or an evening setting.', category:'woody', images:[{src:'assets/product-bentley-intense.jpg', alt:'Bentley Intense bottle and box on a clean white background'},{src:'assets/product-bentley-intense-2.jpg', alt:'Bentley Intense bottle on a clean white background'}], price:40, decantPrice:10, originalPrice:52, featured:6, paymentLink:'https://buy.stripe.com/bJeeVf3UBaAcbWi5Crf7i19' },
         { name:'Lattafa Pride Peace & Love Perfume for Unisex', niche:'Lattafa Pride · Unisex · 3.4 oz EDP', direction:'Soft florals, creamy woods and amber', description:'A smooth, comforting blend of luminous florals, creamy woods and mellow amber. Refined and easygoing, with a softly enveloping trail.', category:'amber', images:[{src:'assets/product-lattafa-peace-love.jpg', alt:'Lattafa Pride Peace and Love scroll bottle and gold box on a clean white background'},{src:'assets/product-lattafa-peace-love-2.jpg', alt:'Lattafa Pride Peace and Love scroll bottle on a clean white background'}], price:34, decantPrice:9, originalPrice:40, featured:7, paymentLink:'https://buy.stripe.com/9B66oJ2Qx6jW1hE6Gvf7i1a'},
-        { name:'Lattafa Yara Elixir Perfume for Women', niche:'Lattafa · Women · 3.4 oz EDP', direction:'Lush berries, vanilla and warm amber', description:'Juicy fruit and soft florals melt into creamy vanilla and warm amber. Sweet, playful and plush without losing its polished finish.', category:'sweet', images:[{src:'assets/lattafa-yara-elixir-1.jpg', alt:'Lattafa Yara Elixir bottle on a clean white background'},{src:'assets/lattafa-yara-elixir-2.jpg', alt:'Lattafa Yara Elixir bottle in a pink fragrance composition'},{src:'assets/lattafa-yara-elixir-3.jpg', alt:'Lattafa Yara Elixir bottle and box with berries, vanilla and caramel notes'},{src:'assets/lattafa-yara-elixir-4.jpg', alt:'Lattafa Yara Elixir bottle with berries, vanilla and caramel notes'}], price:39, decantPrice:10, originalPrice:44, featured:8, paymentLink:'https://buy.stripe.com/7sYfZjfDj0ZC3pMc0Pf7i1b' },
+        { name:'Lattafa Yara Elixir Perfume for Women', niche:'Lattafa · Women · 3.4 oz EDP', soldOut:true, direction:'Lush berries, vanilla and warm amber', description:'Juicy fruit and soft florals melt into creamy vanilla and warm amber. Sweet, playful and plush without losing its polished finish.', category:'sweet', images:[{src:'assets/lattafa-yara-elixir-1.jpg', alt:'Lattafa Yara Elixir bottle on a clean white background'},{src:'assets/lattafa-yara-elixir-2.jpg', alt:'Lattafa Yara Elixir bottle in a pink fragrance composition'},{src:'assets/lattafa-yara-elixir-3.jpg', alt:'Lattafa Yara Elixir bottle and box with berries, vanilla and caramel notes'},{src:'assets/lattafa-yara-elixir-4.jpg', alt:'Lattafa Yara Elixir bottle with berries, vanilla and caramel notes'}], price:39, decantPrice:10, originalPrice:44, featured:8, paymentLink:'https://buy.stripe.com/7sYfZjfDj0ZC3pMc0Pf7i1b' },
         { name:'Rasasi Hawas Fire Cologne for Men', niche:'Rasasi · Men · 3.38 oz EDP', direction:'Red fruits, aromatic freshness and woods', description:'A vibrant mix of juicy fruit and crisp aromatics gains depth from spice and polished woods. Fresh at first spray, then warmer and more intense.', category:'fresh', images:[{src:'assets/product-rasasi-hawas-fire.jpg', alt:'Rasasi Hawas Fire red bottle and black box on a clean white background'},{src:'assets/gallery-rasasi-hawas-fire-1.jpg', alt:'Rasasi Hawas Fire red bottle close-up on a clean white background'},{src:'assets/gallery-rasasi-hawas-fire-2.jpg', alt:'Rasasi Hawas Fire red bottle in a warm glow'}], price:54, decantPrice:14, originalPrice:75, featured:9 , paymentLink:'https://buy.stripe.com/5kQfZj3UB5fS9Oa5Crf7i14'},
         { name:'Armaf Odyssey Mega Cologne for Men', niche:'Armaf · Men · 3.4 oz EDP', direction:'Citrus, ginger and aromatic woods', description:'Zesty citrus and ginger create a brisk opening before aromatic herbs and clean woods take over. Modern, bright and made for everyday momentum.', category:'fresh', images:[{src:'assets/product-armaf-odyssey-mega.jpg', alt:'Armaf Odyssey Mega yellow leather bottle on a clean white background'},{src:'assets/product-armaf-odyssey-mega-2.jpg', alt:'Armaf Odyssey Mega bottle and yellow box on a clean white background'}], price:31, decantPrice:8, originalPrice:38, featured:10 , paymentLink:'https://buy.stripe.com/eVqdRb0Ip7o0e4q7Kzf7i0Z'},
         { name:'Lattafa Maison Alhambra Delilah Perfume for Women', niche:'Maison Alhambra · Women · 3.4 oz EDP', direction:'Rose, tart fruit and soft vanilla musk', description:'Tart fruit brightens a romantic rose heart, while vanilla and musk soften the finish. Airy, graceful and quietly sweet.', category:'fresh', images:[{src:'assets/product-maison-alhambra-delilah.jpg', alt:'Maison Alhambra Delilah pink bottle and box on a clean white background'},{src:'assets/product-maison-alhambra-delilah-2.jpg', alt:'Maison Alhambra Delilah pink bottle and box, alternate angle'}], price:28, decantPrice:7, originalPrice:34, featured:11 , paymentLink:'https://buy.stripe.com/dRmeVf8aR8s43pM8ODf7i1c'},
@@ -718,12 +721,12 @@
         { name:'Yves Saint Laurent Libre Perfume for Women', niche:'Yves Saint Laurent · Women · 3.0 oz EDP', direction:'Lavender, orange blossom and vanilla', description:'Aromatic lavender contrasts with luminous orange blossom before settling into warm vanilla. Confident, elegant and distinctly modern.', category:'amber', images:[{src:'assets/product-ysl-libre.jpg', alt:'Yves Saint Laurent Libre bottle and box on a clean white background'},{src:'assets/gallery-ysl-libre-1.jpg', alt:'Yves Saint Laurent Libre bottle on a clean white background'},{src:'assets/gallery-ysl-libre-2.jpg', alt:'Yves Saint Laurent Libre bottle in a styled citrus and lavender flat-lay'}], price:125, decantPrice:31, originalPrice:145, featured:27 , paymentLink:'https://buy.stripe.com/7sY4gB9eV4bO0dAgh5f7i0N'},
         { name:'Carolina Herrera Good Girl Perfume for Women', niche:'Carolina Herrera · Women · 2.7 oz EDP', direction:'White florals, cacao and tonka', description:'Lush white florals meet a darker base of cacao, tonka and warm woods. Glamorous and dramatic, with a sweet evening character.', category:'sweet', images:[{src:'assets/product-carolina-herrera-good-girl.jpg', alt:'Carolina Herrera Good Girl stiletto bottle and box on a clean white background'},{src:'assets/product-carolina-herrera-good-girl-2.jpg', alt:'Carolina Herrera Good Girl stiletto bottle, angled view'},{src:'assets/product-carolina-herrera-good-girl-3.jpg', alt:'Carolina Herrera Good Girl stiletto bottle, side view'}], price:105, decantPrice:26, originalPrice:125, featured:28 , paymentLink:'https://buy.stripe.com/7sY28tgHn5fSf8u0i7f7i0O'},
         { name:'Mont Blanc Explorer Cologne for Men (Tester)', niche:'Mont Blanc · Men · 3.3 oz EDP · Tester', direction:'Bergamot, aromatic woods and leather', description:'Tester version: the authentic 3.3 oz fragrance supplied in tester packaging rather than standard retail presentation. Fresh bergamot moves into aromatic woods and a smooth leather-toned base.', category:'woody', images:[{src:'assets/product-montblanc-explorer-tester.jpg', alt:'Mont Blanc Explorer tester bottle and box on a clean white background'},{src:'assets/gallery-montblanc-explorer-1.jpg', alt:'Mont Blanc Explorer bottle in a styled city composition'},{src:'assets/gallery-montblanc-explorer-2.jpg', alt:'Mont Blanc Explorer bottle on a clean white background'}], price:49, decantPrice:12, originalPrice:62, featured:29 , paymentLink:'https://buy.stripe.com/4gMcN7ezf5fSf8u0i7f7i1l'},
-        { name:'Afnan 9PM Night Out Perfume for Unisex', niche:'Afnan · Unisex · 3.4 oz Extrait de Parfum', direction:'Spiced fruit, warm amber and woods', description:'A concentrated mix of sweet fruit and spice settles into warm amber and dark woods. Rich, long-wearing and designed for an expressive night-out mood.', category:'sweet', images:[{src:'assets/product-afnan-9pm-night-out.jpg', alt:'Afnan 9PM Night Out bottle in a styled cognac and spice composition'},{src:'assets/gallery-afnan-9pm-night-out-1.jpg', alt:'Afnan 9PM Night Out bottle in a styled fruit and lavender composition'}], price:49, decantPrice:12, originalPrice:60, featured:30 , paymentLink:'https://buy.stripe.com/5kQ3cx62JeQsd0mfd1f7i18'},
+        { name:'Afnan 9PM Night Out Perfume for Unisex', niche:'Afnan · Unisex · 3.4 oz Extrait de Parfum', soldOut:true, direction:'Spiced fruit, warm amber and woods', description:'A concentrated mix of sweet fruit and spice settles into warm amber and dark woods. Rich, long-wearing and designed for an expressive night-out mood.', category:'sweet', images:[{src:'assets/product-afnan-9pm-night-out.jpg', alt:'Afnan 9PM Night Out bottle in a styled cognac and spice composition'},{src:'assets/gallery-afnan-9pm-night-out-1.jpg', alt:'Afnan 9PM Night Out bottle in a styled fruit and lavender composition'}], price:49, decantPrice:12, originalPrice:60, featured:30 , paymentLink:'https://buy.stripe.com/5kQ3cx62JeQsd0mfd1f7i18'},
         { name:'Armaf Odyssey Homme White Edition Cologne for Men', niche:'Armaf · Men · 3.4 oz EDP', direction:'Fresh spice, vanilla and smooth woods', description:'A crisp aromatic opening is softened by warm spice, creamy vanilla and clean woods. Versatile and inviting with a smooth modern finish.', category:'fresh', images:[{src:'assets/product-armaf-odyssey-homme-white.jpg', alt:'Armaf Odyssey Homme White Edition bottle and box on a clean white background'},{src:'assets/product-armaf-odyssey-homme-white-2.jpg', alt:'Armaf Odyssey Homme White Edition bottle in a styled ingredient flat-lay'}], price:29, decantPrice:7, originalPrice:36, featured:31, paymentLink:'https://buy.stripe.com/eVq4gB0IpaAce4q4ynf7i0Y'},
         { name:'Ariana Grande Cloud Perfume for Women (Tester)', niche:'Ariana Grande · Women · 3.4 oz EDP · Tester', direction:'Lavender, coconut cream and soft musk', description:'Tester version: the authentic 3.4 oz fragrance supplied in tester packaging rather than standard retail presentation. Airy lavender and fruit float over coconut cream, vanilla and soft musk.', category:'sweet', images:[{src:'assets/product-ariana-grande-cloud-tester.jpg', alt:'Ariana Grande Cloud bottle in a styled coconut and lavender flat-lay'},{src:'assets/gallery-ariana-grande-cloud-1.jpg', alt:'Ariana Grande Cloud bottle among white clouds on blue'}], price:45, decantPrice:11, originalPrice:56, featured:32 , paymentLink:'https://buy.stripe.com/fZu4gB1Mt6jWe4q6Gvf7i0I'},
         { name:'Dior Sauvage Parfum Cologne for Men', niche:'Dior · Men · 3.4 oz Parfum', direction:'Citrus, spice and sandalwood', description:'A fresh citrus opening gains depth from smooth spice, resinous warmth and sandalwood. Refined and full-bodied, with a polished lasting trail.', category:'woody', images:[{src:'assets/product-dior-sauvage-parfum.jpg', alt:'Dior Sauvage Eau de Parfum bottle and box on a clean white background'},{src:'assets/product-dior-sauvage-parfum-2.jpg', alt:'Dior Sauvage Eau de Parfum bottle on a clean white background'},{src:'assets/product-dior-sauvage-parfum-3.jpg', alt:'Dior Sauvage Eau de Parfum bottle on a blue Dior graphic'}], price:165, decantPrice:41, originalPrice:180, featured:33 , paymentLink:'https://buy.stripe.com/7sY7sNaiZ8s41hE9SHf7i0J'},
         { name:'Jimmy Choo Perfume for Women', niche:'Jimmy Choo · Women · 3.3 oz EDP', direction:'Pear, orchid and sweet patchouli', description:'Juicy pear and a luminous floral heart settle into warm toffee-toned sweetness and patchouli. Glamorous and inviting without losing its elegance.', category:'sweet', images:[{src:'assets/product-jimmy-choo.jpg', alt:'Jimmy Choo perfume bottle on a clean white background'},{src:'assets/product-jimmy-choo-2.jpg', alt:'Jimmy Choo perfume bottle held in a campaign-style shot'}], price:62, decantPrice:16, originalPrice:75, featured:34 , paymentLink:'https://buy.stripe.com/14AbJ3cr75fSgcy8ODf7i0H'},
-        { name:'French Avenue Vulcan Feu Perfume for Unisex', niche:'French Avenue · Unisex · 3.4 oz EDP', direction:'Tropical fruit, ginger and warm woods', description:'A vivid tropical-fruit opening meets bright ginger before settling into warm, smooth woods. Colorful and energetic with an easy unisex character.', category:'fresh', images:[{src:'assets/product-french-avenue-vulcan-feu.jpg', alt:'French Avenue Vulcan Feu turquoise snake bottle and box on a clean white background'},{src:'assets/gallery-french-avenue-vulcan-feu-1.jpg', alt:'French Avenue Vulcan Feu turquoise snake bottle on a clean white background'}], price:39, decantPrice:10, originalPrice:50, featured:35 , paymentLink:'https://buy.stripe.com/aFa3cx9eVaAc7G23ujf7i0X'},
+        { name:'French Avenue Vulcan Feu Perfume for Unisex', niche:'French Avenue · Unisex · 3.4 oz EDP', soldOut:true, direction:'Tropical fruit, ginger and warm woods', description:'A vivid tropical-fruit opening meets bright ginger before settling into warm, smooth woods. Colorful and energetic with an easy unisex character.', category:'fresh', images:[{src:'assets/product-french-avenue-vulcan-feu.jpg', alt:'French Avenue Vulcan Feu turquoise snake bottle and box on a clean white background'},{src:'assets/gallery-french-avenue-vulcan-feu-1.jpg', alt:'French Avenue Vulcan Feu turquoise snake bottle on a clean white background'}], price:39, decantPrice:10, originalPrice:50, featured:35 , paymentLink:'https://buy.stripe.com/aFa3cx9eVaAc7G23ujf7i0X'},
         { name:'Emporio Armani Stronger With You Intensely Cologne for Men', niche:'Emporio Armani · Men · 3.3 oz EDP', direction:'Pink pepper, toffee and vanilla amber', description:'A spicy opening melts into sweet toffee, vanilla and warm amber woods. Dense, comforting and especially suited to cool-weather evenings.', category:'sweet', images:[{src:'assets/product-armani-stronger-with-you-intensely.jpg', alt:'Emporio Armani Stronger With You Intensely bottle and box on a clean white background'},{src:'assets/gallery-armani-stronger-with-you-intensely-1.jpg', alt:'Emporio Armani Stronger With You Intensely bottle close-up'},{src:'assets/gallery-armani-stronger-with-you-intensely-2.jpg', alt:'Emporio Armani Stronger With You Intensely bottle on a clean white background'}], price:99, decantPrice:25, originalPrice:120, featured:36 , paymentLink:'https://buy.stripe.com/5kQ6oJ3UBgYA0dAc0Pf7i0W'},
         { name:'Versace Eros Cologne for Men (Tester)', niche:'Versace · Men · 3.4 oz EDT · Tester', direction:'Mint, green apple and vanilla woods', description:'Tester version: the authentic 3.4 oz fragrance supplied in tester packaging rather than standard retail presentation. Bright mint and apple lead into aromatic warmth, vanilla and smooth woods.', category:'fresh', images:[{src:'assets/product-versace-eros-tester.jpg', alt:'Versace Eros tester bottle and box on a clean white background'},{src:'assets/gallery-versace-eros-1.jpg', alt:'Versace Eros bottle in a styled apple and vanilla flat-lay'},{src:'assets/gallery-versace-eros-2.jpg', alt:'Versace Eros bottle in a styled floral composition'},{src:'assets/gallery-versace-eros-3.jpg', alt:'Versace Eros bottle on a clean white background'}], price:55, decantPrice:14, originalPrice:68, featured:37 , paymentLink:'https://buy.stripe.com/cNi00laiZaAc6BY7Kzf7i0K'},
         { name:'Afnan Supremacy Collector\'s Edition Perfume for Unisex', niche:'Afnan · Unisex · 3.4 oz EDP', direction:'Bright fruit, saffron and smoky woods', description:'Vibrant fruit and saffron open with clarity before smoky woods and amber bring depth. Polished and assertive with a versatile unisex profile.', category:'woody', images:[{src:'assets/product-afnan-supremacy-collectors.jpg', alt:'Afnan Supremacy Collector’s Edition speckled bottle in a styled dark composition'},{src:'assets/gallery-afnan-supremacy-collectors-edition-1.jpg', alt:'Afnan Supremacy Collector’s Edition bottle and box with notes breakdown ad'},{src:'assets/gallery-afnan-supremacy-collectors-edition-2.jpg', alt:'Afnan Supremacy Collector’s Edition rating and fragrance profile graphic'}], price:59, decantPrice:15, originalPrice:72, featured:38 , paymentLink:'https://buy.stripe.com/5kQfZj1Mt5fS5xUaWLf7i0T'},
@@ -740,6 +743,7 @@
       var productDialog = document.getElementById('productDialog');
       var dialogClose = document.getElementById('dialogClose');
       var orderActions = document.getElementById('orderActions');
+      var dialogAddCart = document.getElementById('dialogAddCart');
       var cardPaymentButton = document.getElementById('cardPaymentButton');
       var soldOutState = document.getElementById('soldOutState');
       var dialogGallery = document.getElementById('dialogGallery');
@@ -819,11 +823,22 @@
           document.getElementById('dialogPrice').innerHTML = '<span class="sale-price">' + money(product.price) + '</span>' + (product.originalPrice ? '<span class="original-price">Compare ' + money(product.originalPrice) + '</span>' : '');
         }
         var link = dialogSize === '10ml' ? product.decantPaymentLink : product.paymentLink;
-        cardPaymentButton.hidden = !link;
-        orderActions.classList.toggle('has-card-payment', Boolean(link));
-        if (link) {
-          cardPaymentButton.href = link;
-          cardPaymentButton.setAttribute('aria-label', 'Pay with card for ' + product.name + ' (' + sizeLabel(dialogSize) + ')');
+        var soldOut = product.soldOut === true;
+        orderActions.hidden = soldOut;
+        soldOutState.hidden = !soldOut;
+        dialogAddCart.disabled = soldOut;
+        cardPaymentButton.hidden = soldOut || !link;
+        cardPaymentButton.setAttribute('aria-disabled', soldOut ? 'true' : 'false');
+        orderActions.classList.toggle('has-card-payment', !soldOut && Boolean(link));
+        if (soldOut) {
+          cardPaymentButton.removeAttribute('href');
+          cardPaymentButton.setAttribute('tabindex', '-1');
+        } else {
+          cardPaymentButton.removeAttribute('tabindex');
+          if (link) {
+            cardPaymentButton.href = link;
+            cardPaymentButton.setAttribute('aria-label', 'Pay with card for ' + product.name + ' (' + sizeLabel(dialogSize) + ')');
+          }
         }
         Array.prototype.forEach.call(dialogSizes.querySelectorAll('.size-option'), function (btn) {
           var selected = btn.getAttribute('data-size') === dialogSize;
@@ -894,7 +909,7 @@
       }
       function addToCart(name, size) {
         var product = findProduct(name);
-        if (!product) return;
+        if (!product || product.soldOut) return;
         size = size || 'full';
         var key = cartKey(name, size);
         cart[key] = (cart[key] || 0) + 1;
@@ -951,8 +966,8 @@
       cartButton.addEventListener('click', openCart);
       document.getElementById('cartClose').addEventListener('click', closeCart);
       cartBackdrop.addEventListener('click', closeCart);
-      document.getElementById('dialogAddCart').addEventListener('click', function () {
-        if (activeProduct) addToCart(activeProduct.name, dialogSize);
+      dialogAddCart.addEventListener('click', function () {
+        if (activeProduct && !activeProduct.soldOut) addToCart(activeProduct.name, dialogSize);
       });
       cartItems.addEventListener('click', function (event) {
         var inc = event.target.closest('[data-inc]');
@@ -1009,10 +1024,10 @@
       function productCardHTML(product) {
         var discount = product.originalPrice ? Math.round((1 - product.price / product.originalPrice) * 100) : 0;
         var pressed = favoriteNames[product.name] ? 'true' : 'false';
-        return '<article class="product-card" role="button" tabindex="0" data-product="' + product.name + '" aria-label="View details for ' + product.name + '">' +
+        return '<article class="product-card" role="button" tabindex="0" data-product="' + product.name + '" aria-label="View details for ' + product.name + (product.soldOut ? ', sold out' : '') + '">' +
           '<div class="product-photo">' +
             '<img src="' + product.images[0].src + '" alt="' + product.images[0].alt + '">' +
-            (product.originalPrice ? '<span class="discount">-' + discount + '%</span>' : '') +
+            (product.soldOut ? '<span class="sold-out-badge">Sold Out</span>' : (product.originalPrice ? '<span class="discount">-' + discount + '%</span>' : '')) +
             '<button class="favorite" type="button" data-favorite="' + product.name + '" aria-label="Favorite ' + product.name + '" aria-pressed="' + pressed + '">' +
               '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>' +
             '</button>' +
@@ -1024,7 +1039,7 @@
             '<div class="rating"><span class="new-badge">New arrival</span></div>' +
             '<div class="price-row"><span class="sale-price">' + money(product.price) + '</span>' + (product.originalPrice ? '<span class="original-price">Compare ' + money(product.originalPrice) + '</span>' : '') + '</div>' +
             (product.decantPrice ? '<p class="decant-hint">10ml decant · ' + money(product.decantPrice) + '</p>' : '') +
-            '<button class="add-cart-btn" type="button" data-addcart="' + product.name + '" aria-label="Add ' + product.name + ' to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 8h15l-1.5 9h-12z"></path><path d="M6 8l-1-4H2.5"></path><circle cx="9.5" cy="20" r="1.4"></circle><circle cx="17.5" cy="20" r="1.4"></circle></svg>Add to Cart</button>' +
+            (product.soldOut ? '<button class="add-cart-btn" type="button" disabled aria-label="' + product.name + ' is sold out">Sold Out</button>' : '<button class="add-cart-btn" type="button" data-addcart="' + product.name + '" aria-label="Add ' + product.name + ' to cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 8h15l-1.5 9h-12z"></path><path d="M6 8l-1-4H2.5"></path><circle cx="9.5" cy="20" r="1.4"></circle><circle cx="17.5" cy="20" r="1.4"></circle></svg>Add to Cart</button>') +
           '</div>' +
         '</article>';
       }
