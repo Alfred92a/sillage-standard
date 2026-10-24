@@ -146,7 +146,7 @@
       font-size: 14px;
     }
     .button:hover { filter: brightness(1.08); }
-    .button:focus-visible, .choice:focus-visible, .favorite:focus-visible, .clear-filters:focus-visible { outline: 3px solid #e8a797; outline-offset: 3px; }
+    .button:focus-visible, .choice:focus-visible, .favorite:focus-visible, .clear-filters:focus-visible, .control input[type="search"]:focus-visible { outline: 3px solid #e8a797; outline-offset: 3px; }
     .arrow { font-size: 18px; line-height: 1; }
     .statement { padding: 120px 0; }
     .statement-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: 9vw; align-items: start; }
@@ -175,9 +175,20 @@
     .shop-heading h2 { font-size:clamp(54px,7vw,88px); line-height:.94; margin:10px 0 0; }
     .shop-heading-copy { max-width:620px; }
     .shop-heading-copy p { color:var(--muted); margin-bottom:0; }
-    .shop-controls { display:grid; grid-template-columns:1fr 1fr auto; gap:14px; align-items:end; margin-bottom:30px; }
+    .shop-controls { display:grid; grid-template-columns:1.3fr 1fr 1fr auto; gap:14px; align-items:end; margin-bottom:30px; }
     .control label, .sale-control > span { display:block; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-bottom:7px; color:var(--muted); }
     .control select { width:100%; min-height:46px; border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:0 40px 0 13px; font:600 14px "Manrope", sans-serif; }
+    .control input[type="search"] { width:100%; min-height:46px; border:1px solid var(--line); background:var(--paper); color:var(--ink); padding:0 13px; font:600 14px "Manrope", sans-serif; }
+    .control input[type="search"]::placeholder { color:var(--muted); font-weight:500; }
+    .pagination { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:38px; }
+    .page-btn { min-width:46px; min-height:46px; padding:8px 14px; border:1px solid var(--line); background:transparent; color:var(--ink); cursor:pointer; font-weight:600; font-size:14px; }
+    .page-btn:hover:not(:disabled) { border-color:var(--accent); }
+    .page-btn[aria-current="page"] { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); }
+    .page-btn:disabled { opacity:.42; cursor:not-allowed; }
+    .page-btn:focus-visible { outline:3px solid #e8a797; outline-offset:3px; }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
+    .button.ghost { background:transparent; border-color:rgba(255,247,238,.65); color:#fff7ee; }
+    .button.ghost:hover { background:rgba(255,247,238,.13); filter:none; }
     .sale-control { min-height:46px; }
     .sale-toggle { min-height:46px; display:flex; align-items:center; gap:9px; padding:0 14px; border:1px solid var(--line); background:var(--paper); cursor:pointer; font-size:14px; font-weight:600; }
     .sale-toggle input { width:18px; height:18px; margin:0; accent-color:var(--accent); }
@@ -327,6 +338,7 @@
       .shipping-banner span { text-align:left; }
       .shop-heading { margin-bottom:30px; }
       .shop-controls { grid-template-columns:1fr 1fr; gap:12px; }
+      .search-control { grid-column:1 / -1; }
       .sale-control { grid-column:1 / -1; }
       .product-grid { gap:28px 12px; }
       .product-photo { aspect-ratio:3/4; }
@@ -490,7 +502,10 @@
         <p class="eyebrow">Fragrance with presence</p>
         <h1 id="hero-title">Wear it loud.</h1>
         <p>Rich, expressive scent directions for people who want their fragrance to arrive before they do—and remain after they leave.</p>
-        <a class="button" href="#profile">Find your direction <span class="arrow" aria-hidden="true">↘</span></a>
+        <div class="hero-actions">
+          <a class="button" href="#shop">Shop Now <span class="arrow" aria-hidden="true">↓</span></a>
+          <a class="button ghost" href="#profile">Find your direction <span class="arrow" aria-hidden="true">↘</span></a>
+        </div>
       </div>
     </section>
 
@@ -534,6 +549,10 @@
         </div>
 
         <div class="shop-controls" aria-label="Shop filters">
+          <div class="control search-control">
+            <label for="searchProducts">Search</label>
+            <input type="search" id="searchProducts" placeholder="Search name, note or style…" autocomplete="off" />
+          </div>
           <div class="control">
             <label for="sortProducts">Sort by</label>
             <select id="sortProducts">
@@ -568,6 +587,7 @@
           <button class="clear-filters" type="button" id="clearFilters">Clear filters</button>
         </div>
         <div class="product-grid" id="productGrid" aria-live="polite"></div>
+        <nav class="pagination" id="pagination" aria-label="Product pages"></nav>
       </div>
     </section>
 
@@ -839,6 +859,9 @@
       })();
       var favoriteNames = {};
       var productGrid = document.getElementById('productGrid');
+      var searchProducts = document.getElementById('searchProducts');
+      var pagination = document.getElementById('pagination');
+      var shopSection = document.getElementById('shop');
       var sortProducts = document.getElementById('sortProducts');
       var categoryFilter = document.getElementById('categoryFilter');
       var saleOnly = document.getElementById('saleOnly');
@@ -1117,12 +1140,36 @@
         '</article>';
       }
 
+      var PAGE_SIZE = 12;
+      var currentPage = 1;
+      var currentTotalPages = 1;
+
+      function productMatchesSearch(product, query) {
+        var words = query.trim().toLowerCase().split(/\s+/).filter(function (word) { return word.length > 0; });
+        if (!words.length) return true;
+        var haystack = (product.name + ' ' + product.direction + ' ' + product.description + ' ' + product.niche + ' ' + product.category).toLowerCase();
+        return words.every(function (word) { return haystack.indexOf(word) !== -1; });
+      }
+
+      function renderPagination(totalPages) {
+        if (totalPages <= 1) {
+          pagination.innerHTML = '';
+          return;
+        }
+        var html = '<button class="page-btn" type="button" data-page="prev"' + (currentPage === 1 ? ' disabled' : '') + '>‹ Prev</button>';
+        for (var page = 1; page <= totalPages; page++) {
+          html += '<button class="page-btn" type="button" data-page="' + page + '"' + (page === currentPage ? ' aria-current="page"' : '') + '>' + page + '</button>';
+        }
+        html += '<button class="page-btn" type="button" data-page="next"' + (currentPage === totalPages ? ' disabled' : '') + '>Next ›</button>';
+        pagination.innerHTML = html;
+      }
+
       function renderProducts() {
         var category = categoryFilter.value;
         var products = productsCatalog.filter(function (product) {
           var categoryMatches = category === 'all' || product.category === category;
           var saleMatches = !saleOnly.checked || product.originalPrice > product.price;
-          return categoryMatches && saleMatches;
+          return categoryMatches && saleMatches && productMatchesSearch(product, searchProducts.value);
         }).slice();
 
         products.sort(function (a, b) {
@@ -1133,22 +1180,50 @@
         });
 
         resultCount.textContent = products.length + (products.length === 1 ? ' new arrival' : ' new arrivals');
+        currentTotalPages = Math.max(1, Math.ceil(products.length / PAGE_SIZE));
+        if (currentPage > currentTotalPages) currentPage = currentTotalPages;
         if (!products.length) {
-          productGrid.innerHTML = '<p class="empty-products">No new arrivals match those filters.</p>';
+          productGrid.innerHTML = '<p class="empty-products">No new arrivals match your search and filters.</p>';
+          pagination.innerHTML = '';
           return;
         }
 
-        productGrid.innerHTML = products.map(productCardHTML).join('');
+        var pageStart = (currentPage - 1) * PAGE_SIZE;
+        productGrid.innerHTML = products.slice(pageStart, pageStart + PAGE_SIZE).map(productCardHTML).join('');
+        renderPagination(currentTotalPages);
       }
 
+      searchProducts.addEventListener('input', function () {
+        currentPage = 1;
+        renderProducts();
+      });
+
       [sortProducts, categoryFilter, saleOnly].forEach(function (control) {
-        control.addEventListener('change', renderProducts);
+        control.addEventListener('change', function () {
+          currentPage = 1;
+          renderProducts();
+        });
+      });
+
+      pagination.addEventListener('click', function (event) {
+        var button = event.target.closest('[data-page]');
+        if (!button || button.disabled) return;
+        var target = button.getAttribute('data-page');
+        if (target === 'prev') currentPage -= 1;
+        else if (target === 'next') currentPage += 1;
+        else currentPage = Number(target);
+        if (currentPage < 1) currentPage = 1;
+        if (currentPage > currentTotalPages) currentPage = currentTotalPages;
+        renderProducts();
+        shopSection.scrollIntoView();
       });
 
       document.getElementById('clearFilters').addEventListener('click', function () {
         sortProducts.value = 'featured';
         categoryFilter.value = 'all';
         saleOnly.checked = false;
+        searchProducts.value = '';
+        currentPage = 1;
         renderProducts();
       });
 
@@ -1324,5 +1399,19 @@
       });
     }());
   </script>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6adca644666869346be5ccf2/1k5muiurf';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 </body>
 </html>
