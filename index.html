@@ -473,6 +473,23 @@
     }
     .cart-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
     .cart-panel[hidden], .cart-backdrop[hidden] { display: none; }
+    .trust-row { display:flex; flex-direction:column; gap:10px; margin-top:16px; }
+    .order-actions .trust-row { grid-column:1 / -1; margin-top:4px; }
+    .google-badge { display:inline-flex; align-items:center; gap:8px; align-self:flex-start; padding:7px 12px; border:1px solid var(--line); background:var(--panel); color:var(--ink); text-decoration:none; font-size:13px; }
+    .google-badge:hover { border-color:var(--accent); }
+    .google-badge:focus-visible { outline:3px solid #e8a797; outline-offset:3px; }
+    .google-badge svg { width:16px; height:16px; flex:0 0 auto; }
+    .google-stars { color:#f2a007; letter-spacing:2px; font-size:13px; line-height:1; }
+    .pay-marks { display:flex; flex-wrap:wrap; gap:6px; align-items:center; }
+    .pay-mark { display:inline-flex; align-items:center; justify-content:center; height:26px; padding:0 8px; border:1px solid var(--line); border-radius:4px; background:#fff; color:#1a1f71; font-size:11px; font-weight:800; letter-spacing:.04em; line-height:1; }
+    .pay-mark svg { height:16px; width:auto; display:block; }
+    .pay-mark-visa { font-style:italic; }
+    .pay-mark-amex { background:#2e77bc; border-color:#2e77bc; color:#fff; }
+    .pay-mark-klarna { background:#ffb3c7; border-color:#ffb3c7; color:#17120f; font-weight:700; }
+    .secure-line { margin:0; font-size:12.5px; color:var(--muted); font-weight:600; }
+    .review-quote { margin:0; }
+    .review-quote p { font-size:21px; line-height:1.45; color:var(--ink); margin-bottom:12px; }
+    .review-quote cite { font-style:normal; font-size:14px; font-weight:700; color:var(--muted); }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior:auto; }
       .gallery-track { transition:none; }
@@ -666,6 +683,20 @@
         </div>
       </div>
     </section>
+    <section class="drop" id="reviews">
+      <div class="wrap drop-box">
+        <div>
+          <p class="eyebrow">Customer reviews</p>
+          <h2>What customers say.</h2>
+        </div>
+        <div class="drop-copy">
+          <blockquote class="review-quote">
+            <p>Love the perfumes! Great place to order from. I’ll definitely be purchasing more.</p>
+            <cite>M — Google review</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
     <section class="drop" id="contact">
       <div class="wrap drop-box">
         <div>
@@ -710,6 +741,21 @@
             </svg>
             <span class="order-button-copy"><strong>Pay with Card</strong><small>Secure checkout</small></span>
           </a>
+          <div class="trust-row">
+            <a class="google-badge" href="https://g.page/r/CS3wzADHBnS4ECA/review" target="_blank" rel="noopener noreferrer" aria-label="Rated 5.0 on Google">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29A7.2 7.2 0 0 1 4.89 12c0-.8.14-1.57.38-2.29V6.62H1.29a12 12 0 0 0 0 10.76l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42A11.98 11.98 0 0 0 12 0 11.99 11.99 0 0 0 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg>
+              <span class="google-stars" aria-hidden="true">★★★★★</span>
+              <span><strong>5.0</strong> on Google</span>
+            </a>
+            <div class="pay-marks">
+              <span class="sr-only">We accept Visa, Mastercard, American Express and Klarna.</span>
+              <span class="pay-mark pay-mark-visa" aria-hidden="true">VISA</span>
+              <span class="pay-mark" aria-hidden="true"><svg viewBox="0 0 36 22"><circle cx="13" cy="11" r="8" fill="#eb001b"/><circle cx="23" cy="11" r="8" fill="#f79e1b" fill-opacity=".85"/></svg></span>
+              <span class="pay-mark pay-mark-amex" aria-hidden="true">AMEX</span>
+              <span class="pay-mark pay-mark-klarna" aria-hidden="true">Klarna.</span>
+            </div>
+            <p class="secure-line">Secure checkout by Stripe</p>
+          </div>
         </div>
         <div class="availability-note" id="soldOutState" hidden>
           <strong>Sold Out</strong>
@@ -742,6 +788,21 @@
       <button class="cart-checkout-btn" type="button" id="cartCheckout">Continue to checkout</button>
       <p class="cart-error" id="cartCheckoutError" hidden></p>
       <p class="cart-note">One secure Stripe checkout for everything in your cart.</p>
+      <div class="trust-row">
+        <a class="google-badge" href="https://g.page/r/CS3wzADHBnS4ECA/review" target="_blank" rel="noopener noreferrer" aria-label="Rated 5.0 on Google">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.49 12.27c0-.79-.07-1.54-.19-2.27H12v4.51h6.47c-.29 1.48-1.14 2.73-2.4 3.58v3h3.86c2.26-2.09 3.56-5.17 3.56-8.82z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.31 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29A7.2 7.2 0 0 1 4.89 12c0-.8.14-1.57.38-2.29V6.62H1.29a12 12 0 0 0 0 10.76l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42A11.98 11.98 0 0 0 12 0 11.99 11.99 0 0 0 1.29 6.62l3.98 3.09C6.22 6.86 8.87 4.75 12 4.75z"/></svg>
+          <span class="google-stars" aria-hidden="true">★★★★★</span>
+          <span><strong>5.0</strong> on Google</span>
+        </a>
+        <div class="pay-marks">
+          <span class="sr-only">We accept Visa, Mastercard, American Express and Klarna.</span>
+          <span class="pay-mark pay-mark-visa" aria-hidden="true">VISA</span>
+          <span class="pay-mark" aria-hidden="true"><svg viewBox="0 0 36 22"><circle cx="13" cy="11" r="8" fill="#eb001b"/><circle cx="23" cy="11" r="8" fill="#f79e1b" fill-opacity=".85"/></svg></span>
+          <span class="pay-mark pay-mark-amex" aria-hidden="true">AMEX</span>
+          <span class="pay-mark pay-mark-klarna" aria-hidden="true">Klarna.</span>
+        </div>
+        <p class="secure-line">Secure checkout by Stripe</p>
+      </div>
     </div>
   </aside>
   <div class="cart-toast" id="cartToast" role="status" aria-live="polite"></div>
